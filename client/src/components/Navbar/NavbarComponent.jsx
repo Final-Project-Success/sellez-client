@@ -3,7 +3,9 @@ import logo from "../../public/img/logo png.png";
 import { FaSearch } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import { FaShoppingBag } from "react-icons/fa";
-import { FaUserAlt } from "react-icons/fa";
+import { FaUserAlt, FaBars } from "react-icons/fa";
+import { MdOutlineLiveTv } from "react-icons/md";
+
 export default function NabarComponent() {
   return (
     <>
@@ -68,6 +70,53 @@ export default function NabarComponent() {
               </div>
 
               <div className="text-xs mt-1">Account</div>
+            </Link>
+          </div>
+        </div>
+      </div>
+      {/* bawah navbar */}
+      <div className="bg-gray-800">
+        <div className="container flex">
+          {/* All category */}
+          <div className="px-8 py-4 bg-primary flex items-center cursor-pointer">
+            <span className="text-white">
+              <FaBars />
+            </span>
+            {/* <span className="capitalize ml-2 text-white">All categories</span> */}
+            {/* select item all categories */}
+            <select className="ml-2  text-white bg-transparent border-none outline-none">
+              <option value="all">All</option>
+              <option value="category1">Category1</option>
+            </select>
+
+            {/* make another categories */}
+          </div>
+
+          {/* all categgory end */}
+          <div className="flex items-center justify-between flex-grow pl-12">
+            <div className="flex items-center space-x-6 capitalize">
+              <Link
+                to="/"
+                className="text-gray-200 hover:text-white transition"
+              >
+                Home
+              </Link>
+              <Link
+                to="/"
+                className="text-gray-200 hover:text-white transition"
+              >
+                Shop
+              </Link>
+              <Link
+                to="/"
+                className="text-gray-200 hover:text-white transition flex items-center "
+              >
+                <MdOutlineLiveTv className="text-xl mr-1  text-gray-200" />
+                Live
+              </Link>
+            </div>
+            <Link to="/" className="text-gray-200 hover:text-white transition">
+              Login/Register
             </Link>
           </div>
         </div>
