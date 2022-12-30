@@ -9,10 +9,10 @@ import { MdOutlineLiveTv } from "react-icons/md";
 export default function NabarComponent() {
   return (
     <>
-      <div className="py-4 shadow-sm bg-white">
+      <div className="py-2 shadow-sm bg-white">
         <div className="container flex items-center justify-between">
           <Link to="/">
-            <img src={logo} alt="logo" className="w-24" />
+            <img src={logo} alt="logo" className="w-32" />
           </Link>
 
           {/* search bar */}
