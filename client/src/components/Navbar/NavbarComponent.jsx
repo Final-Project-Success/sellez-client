@@ -62,7 +62,7 @@ export default function NabarComponent() {
               </span>
             </Link>
             <Link
-              to="/cart"
+              to="/account"
               className="text-center text-gray-700 hover:text-primary transition relative"
             >
               <div className="text-2xl">
