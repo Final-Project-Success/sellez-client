@@ -5,7 +5,6 @@ export default function Carousel() {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
     slidesToShow: 4,
     slidesToScroll: 4,
     // how to see the arrow?
