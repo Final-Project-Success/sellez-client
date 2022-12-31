@@ -5,6 +5,8 @@ import BaseLayout from "../pages/BaseLayout";
 import ShopPage from "../pages/ShopPage";
 import AccountPage from "../pages/AccountPage";
 import ManageAccount from "../components/MangeAccount";
+import ProfileEdit from "../components/ProfileEdit";
+import Favorites from "../components/Favorites";
 
 const router = createBrowserRouter([
   {
@@ -27,8 +29,16 @@ const router = createBrowserRouter([
         element: <AccountPage />,
         children: [
           {
-            path: "",
+            path: "/account",
             element: <ManageAccount />,
+          },
+          {
+            path: "/account/edit",
+            element: <ProfileEdit />,
+          },
+          {
+            path: "/account/favorites",
+            element: <Favorites />,
           },
         ],
       },
