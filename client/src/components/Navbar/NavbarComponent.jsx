@@ -5,7 +5,7 @@ import { FaRegHeart } from "react-icons/fa";
 import { FaShoppingBag } from "react-icons/fa";
 import { FaUserAlt, FaBars } from "react-icons/fa";
 import { MdOutlineLiveTv } from "react-icons/md";
-
+import profilePict from "../../public/products/product1.jpg";
 export default function NabarComponent() {
   return (
     <>
@@ -62,14 +62,16 @@ export default function NabarComponent() {
               </span>
             </Link>
             <Link
-              to="/cart"
+              to="/account"
               className="text-center text-gray-700 hover:text-primary transition relative"
             >
-              <div className="text-2xl">
-                <FaUserAlt className="ml-2" />
+              <div className="flex-shrink-0">
+                <img
+                  src={profilePict}
+                  alt="profile"
+                  className="rounded-full w-14 h-14 border-gray-200 p-1 object-cover"
+                />
               </div>
-
-              <div className="text-xs mt-1">Account</div>
             </Link>
           </div>
         </div>
@@ -102,7 +104,7 @@ export default function NabarComponent() {
                 Home
               </Link>
               <Link
-                to="/"
+                to="/shop"
                 className="text-gray-200 hover:text-white transition"
               >
                 Shop
