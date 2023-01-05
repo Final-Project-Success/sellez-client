@@ -1,12 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
 import ChatPage from "../pages/Chat-Web/ChatPage";
 import HomePage from "../pages/HomePage/HomePage";
-import BaseLayout from "../pages/BaseLayout";
+import LoginPage from "../pages/LoginPage/LoginPage";
 import ShopPage from "../pages/ShopPage";
 import AccountPage from "../pages/AccountPage";
 import ManageAccount from "../components/MangeAccount";
 import ProfileEdit from "../components/ProfileEdit";
 import Favorites from "../components/Favorites";
+import BaseLayout from "../pages/BaseLayout";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: "/chat",
         element: <ChatPage />,
+      },
+      {
+        path: "/login",
+        element: <LoginPage />,
       },
       {
         path: "/shop",

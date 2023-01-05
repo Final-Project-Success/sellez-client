@@ -3,7 +3,7 @@ import logo from "../../public/img/logo png.png";
 import { FaSearch } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import { FaShoppingBag } from "react-icons/fa";
-import { FaUserAlt, FaBars } from "react-icons/fa";
+import { FaBars } from "react-icons/fa";
 import { MdOutlineLiveTv } from "react-icons/md";
 import profilePict from "../../public/products/product1.jpg";
 export default function NabarComponent() {

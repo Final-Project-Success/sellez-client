@@ -9,7 +9,7 @@ export default function Favorites() {
         <div class="flex items-center md:justify-between gap-4 md:gap-6 p-4 border border-gray-200 rounded flex-wrap md:flex-nowrap">
           {/* img */}
           <div class="w-28 flex-shrink-0">
-            <img src={product1} class="w-full" />
+            <img src={product1} alt="product images" class="w-full" />
           </div>
           {/* card content */}
           <div class="md:w-1/3 w-full">
