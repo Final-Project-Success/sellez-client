@@ -3,10 +3,11 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     screens: {
-      sm: "576px",
-      md: "768px",
-      lg: "992px",
-      xl: "1200px",
+      xl: { max: "1200px" },
+      lg: { max: "991px" },
+      md: { max: "767px" },
+      sm: { max: "550px" },
+      xsm: { max: "375px" },
     },
     container: {
       center: true,

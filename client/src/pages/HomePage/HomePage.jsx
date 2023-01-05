@@ -1,3 +1,4 @@
+import Hero from "../../components/Hero.jsx";
 import TopRated from "../../components/TopRated.jsx";
 export default function HomePage(params) {
   return (
@@ -7,7 +8,8 @@ export default function HomePage(params) {
         chat
       </Link> */}
       {/* <Carousel /> */}
-      <TopRated />
+      {/* <TopRated /> */}
+      <Hero />
     </>
   );
 }
