@@ -6,6 +6,10 @@ export default function HomePage(params) {
       <Link to={"/chat"} class="nav-link waves-effect" href="#">
         chat
       </Link>
+      <br/>
+      <Link to={"/login"} class="nav-link waves-effect" href="#">
+        login
+      </Link>
     </>
   );
 }
