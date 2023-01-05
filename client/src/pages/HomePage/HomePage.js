@@ -1,15 +1,13 @@
-import { Link } from "react-router-dom";
+import TopRated from "../../components/TopRated.jsx";
 export default function HomePage(params) {
   return (
     <>
-      <h1> INI HOME </h1>
+      {/* <h1> INI HOME </h1>
       <Link to={"/chat"} class="nav-link waves-effect" href="#">
         chat
-      </Link>
-      <br/>
-      <Link to={"/login"} class="nav-link waves-effect" href="#">
-        login
-      </Link>
+      </Link> */}
+      {/* <Carousel /> */}
+      <TopRated />
     </>
   );
 }
