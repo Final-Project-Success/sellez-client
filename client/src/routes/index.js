@@ -7,6 +7,7 @@ import AccountPage from "../pages/AccountPage";
 import ManageAccount from "../components/MangeAccount";
 import ProfileEdit from "../components/ProfileEdit";
 import Favorites from "../components/Favorites";
+import BaseLayout from "../pages/BaseLayout";
 
 const router = createBrowserRouter([
   {

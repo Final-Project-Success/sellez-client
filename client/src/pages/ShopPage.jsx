@@ -1,5 +1,4 @@
 import CardOne from "../components/CardOne";
-import { Link } from "react-router-dom";
 import BreadCrumbs from "../components/BreadCrums";
 export default function ShopPage() {
   // how to get routes?
