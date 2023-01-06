@@ -1,5 +1,6 @@
+import FlexContent from "../../components/FlexContent.jsx";
 import Hero from "../../components/Hero.jsx";
-import TopRated from "../../components/TopRated.jsx";
+
 import { useGetProductsQuery } from "../../features/apiSlice.js";
 export default function HomePage(params) {
   const { data, error, isLoading } = useGetProductsQuery();
@@ -13,7 +14,10 @@ export default function HomePage(params) {
       </Link> */}
       {/* <Carousel /> */}
       {/* <TopRated /> */}
-      <Hero />
+      <main className="flex flex-col gap-16 relative">
+        <Hero />
+        <FlexContent />
+      </main>
     </>
   );
 }
