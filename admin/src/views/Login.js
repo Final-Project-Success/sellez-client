@@ -1,17 +1,20 @@
 import { useState } from "react";
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import sellez from '../assets/sellez-logoo.jpg'
+import { login } from "../stores/actions/user";
+import Swal from "sweetalert2";
 
 export default function Login() {
-      const navigate = useNavigate();
-//   const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const dispatch = useDispatch()
 
 
   const [input, setInput] = useState({
     email: "",
     password: "",
   });
+
 
   const handleChange = (e) => {
     const value = e.target.value
@@ -24,8 +27,14 @@ export default function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    localStorage.setItem('balbalbla', 'blablabl')
-    navigate("/");
+    dispatch(login(input))
+    .then((result) => {
+      if(result) {
+        localStorage.setItem('access_token', result.access_token)
+         navigate('/')
+      }
+      console.log(result);
+    })
   };
 
     return (
