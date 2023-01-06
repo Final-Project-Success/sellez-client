@@ -1,6 +1,6 @@
 import FlexContent from "../../components/FlexContent.jsx";
 import Hero from "../../components/Hero.jsx";
-
+import TopSales from "../../components/TopSales.jsx";
 import { useGetProductsQuery } from "../../features/apiSlice.js";
 export default function HomePage(params) {
   const { data, error, isLoading } = useGetProductsQuery();
@@ -17,6 +17,7 @@ export default function HomePage(params) {
       <main className="flex flex-col gap-16 relative">
         <Hero />
         <FlexContent />
+        <TopSales />
       </main>
     </>
   );
