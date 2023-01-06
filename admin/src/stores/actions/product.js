@@ -1,6 +1,6 @@
 import axios from "axios"
-
 let baseUrl = 'http://localhost:4000'
+
 export function fetchProducts() {
     return async(dispatch) => {
         try {

@@ -1,7 +1,18 @@
 import {Link} from 'react-router-dom'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { useDispatch, useSelector } from 'react-redux';
+import {useEffect} from 'react'
+import CategoryRow from './CategoryRow';
+import { fetchCategories } from '../stores/actions/category';
 export default function CategoryTable() {
+  const categories = useSelector((state) => state.categoryReducer.categories)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchCategories())
+  })
+
     return (
         <>
         <section class="py-1 bg-blueGray-50">
@@ -41,15 +52,10 @@ export default function CategoryTable() {
                 </thead>
 
                 <tbody>
-                 
-                    
+                  {categories.map((category, i) => {
+                    return <CategoryRow category={category} i={i} key={category.id} />
+                  }) }
                 
-                  <tr>
-                    <th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700">
-                      Nike Air Force 1 Triple White
-                    </th>
-                    
-                  </tr>
                 </tbody>
               </table>
             </div>

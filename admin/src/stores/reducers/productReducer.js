@@ -1,12 +1,12 @@
 let initialState = {
-    products: []
-}
+  products: [],
+};
 
 export default function productReducer(state = initialState, action) {
-    switch(action.type) {
-        case 'products/fetchAll':
-        return  {...state, products: action.payload}
-        default:
-            return state
-    }
+  switch (action.type) {
+    case "products/fetchAll":
+      return { ...state, products: action.payload };
+    default:
+      return state;
+  }
 }
