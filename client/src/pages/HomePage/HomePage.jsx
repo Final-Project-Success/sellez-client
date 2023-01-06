@@ -1,5 +1,6 @@
 import FlexContent from "../../components/FlexContent.jsx";
 import Hero from "../../components/Hero.jsx";
+import PopularSales from "../../components/PopularSales.jsx";
 import TopSales from "../../components/TopSales.jsx";
 import { useGetProductsQuery } from "../../features/apiSlice.js";
 export default function HomePage(params) {
@@ -18,6 +19,7 @@ export default function HomePage(params) {
         <Hero />
         <FlexContent />
         <TopSales />
+        <PopularSales />
       </main>
     </>
   );
