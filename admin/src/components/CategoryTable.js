@@ -15,8 +15,8 @@ export default function CategoryTable() {
                   </h3>
                 </div>
                 <div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
-                  <Link to="/new-product">
-                    <button
+                  <Link to="/new-category">
+                    <button 
                       class="bg-blue-400 text-white hover:text-yellow-200 active:bg-blue-500 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                       type="button"
                     >
