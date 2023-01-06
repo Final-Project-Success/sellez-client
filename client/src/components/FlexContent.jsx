@@ -1,6 +1,6 @@
 import img from "../assets/product8.png";
 
-export default function FlexContent(ifExists) {
+export default function FlexContent({ ifExists }) {
   return (
     <>
       <div
