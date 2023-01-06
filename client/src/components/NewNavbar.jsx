@@ -3,9 +3,19 @@ import logo from "../public/img/logo png.png";
 import { FiSearch } from "react-icons/fi";
 import { BsSuitHeart } from "react-icons/bs";
 import { BiShoppingBag } from "react-icons/bi";
+import { useDispatch, useSelector } from "react-redux";
+import { selectTotalQTY, setOpenCart } from "../features/CartSlice.js";
 export default function NewNavbar() {
   const [navState, setNavState] = useState(false);
-
+  const dispatch = useDispatch();
+  const totalQTY = useSelector(selectTotalQTY);
+  const onCartToggle = () => {
+    dispatch(
+      setOpenCart({
+        cartState: true,
+      })
+    );
+  };
   const onNavScroll = () => {
     if (window.scrollY > 30) {
       setNavState(true);
@@ -55,7 +65,7 @@ export default function NewNavbar() {
             <li className="grid items-center">
               <button
                 type="button"
-                // onClick={onCartToggle}
+                onClick={onCartToggle}
                 className="border-none outline-none active:scale-110 transition-all duration-300 relative"
               >
                 <BiShoppingBag
@@ -70,7 +80,7 @@ export default function NewNavbar() {
                       : "bg-slate-100 text-slate-900 shadow-slate-100"
                   }`}
                 >
-                  {/* {totalQTY} */}
+                  {totalQTY}
                 </div>
               </button>
             </li>
