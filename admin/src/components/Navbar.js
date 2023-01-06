@@ -1,7 +1,7 @@
 import foto from "../assets/sellez-logoo.jpg";
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faDoorOpen } from '@fortawesome/free-solid-svg-icons'
+import { faDoorOpen} from '@fortawesome/free-solid-svg-icons'
 export default function Navbar() {
   return (
     <>
@@ -16,11 +16,13 @@ export default function Navbar() {
               <div className="hidden sm:flex sm:items-center">
               
                 <Link to='/'  className="text-blue-500 text-sm font-bold hover:text-yellow-400 mr-10 ease-linear transition-all duration-200">
-                Products 
+               Products
+
                     </Link>
                
                   <Link to='/categories'  className="text-blue-500 text-sm font-bold hover:text-yellow-400 ease-linear transition-all duration-200">
-                  Categories
+                Categories
+
                     </Link>
               </div>
 
