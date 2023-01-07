@@ -9,6 +9,7 @@ import ProfileEdit from "../components/ProfileEdit";
 import Favorites from "../components/Favorites";
 import BaseLayout from "../pages/BaseLayout";
 import DetailPage from "../pages/DetailPage";
+import StreamingPage from "../pages/StreamingPage";
 
 const router = createBrowserRouter([
   {
@@ -16,7 +17,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <HomePage />
+        element: <HomePage />,
       },
       {
         path: "/chat",
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "/shop",
         element: <ShopPage />,
+      },
+      {
+        path: "/streaming",
+        element: <StreamingPage />,
       },
       {
         path: "/account",
@@ -51,9 +56,9 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: '/detail-page',
-    element: <DetailPage />
-  }
+    path: "/detail-page",
+    element: <DetailPage />,
+  },
 ]);
 
 export default router;

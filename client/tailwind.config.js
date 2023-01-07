@@ -18,6 +18,9 @@ module.exports = {
         poppins: ["Poppins", "sans-serif"],
         roboto: ["Roboto", "sans-serif"],
       },
+      backgroundImage: {
+        "hero-bg": "url('/src/assets/bgblob.svg')",
+      },
       colors: {
         primary: "#0064F7",
         secondary: "#EBEBEB",
