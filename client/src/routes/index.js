@@ -8,6 +8,7 @@ import ManageAccount from "../components/MangeAccount";
 import ProfileEdit from "../components/ProfileEdit";
 import Favorites from "../components/Favorites";
 import BaseLayout from "../pages/BaseLayout";
+import DetailPage from "../pages/DetailPage";
 
 const router = createBrowserRouter([
   {
@@ -15,7 +16,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <HomePage />,
+        element: <HomePage />
       },
       {
         path: "/chat",
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: '/detail-page',
+    element: <DetailPage />
+  }
 ]);
 
 export default router;
