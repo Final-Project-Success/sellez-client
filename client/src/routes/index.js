@@ -9,6 +9,7 @@ import ProfileEdit from "../components/ProfileEdit";
 import Favorites from "../components/Favorites";
 import BaseLayout from "../pages/BaseLayout";
 import DetailPage from "../pages/DetailPage";
+import RegisterPage from "../pages/RegisterPage";
 
 const router = createBrowserRouter([
   {
@@ -16,15 +17,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <HomePage />
+        element: <HomePage />,
       },
       {
         path: "/chat",
         element: <ChatPage />,
-      },
-      {
-        path: "/login",
-        element: <LoginPage />,
       },
       {
         path: "/shop",
@@ -51,8 +48,16 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: '/detail-page',
-    element: <DetailPage />
+    path: "/detail-page",
+    element: <DetailPage />,
+  },
+  {
+    path: "/login",
+    element: <LoginPage />,
+  },
+  {
+    path: '/register',
+    element: <RegisterPage />
   }
 ]);
 
