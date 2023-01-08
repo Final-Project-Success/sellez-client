@@ -1,15 +1,46 @@
 import { facebookProvider } from "../../config/auth-sosmed";
 import { googleProvider } from "../../config/auth-sosmed";
 import socialMediaAuth from "../../sevices/auth";
+import { useState } from "react";
+import { useDispatch } from 'react-redux'
 import { useNavigate } from "react-router-dom";
 import logo from '../images/sellez-logoo.jpg'
 import { Link } from 'react-router-dom'
+import { login } from "../../stores/actions/user";
+
 export default function LoginPage(params) {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+
   const handleLogin = async (provider) => {
     const res = await socialMediaAuth(provider);
     navigate('/')
     console.log(res);
+  };
+  
+  const [input, setInput] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    const value = e.target.value
+    const name = e.target.name
+    setInput ({
+      ...input,
+      [name]: value
+    })
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(login(input))
+    .then((result) => {
+      if(result) {
+        localStorage.setItem('access_token', result.access_token)
+         navigate('/')
+      }
+    })
   };
 
   return (
@@ -25,7 +56,7 @@ export default function LoginPage(params) {
               />
             </div>
             <div class="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
-              <form>
+              <form onSubmit={handleSubmit}>
                 <div class="flex flex-row items-center justify-center lg:justify-start">
                   <p class="text-lg mb-0 mr-4">Sign in with</p>
                   <button
@@ -83,8 +114,11 @@ export default function LoginPage(params) {
                   <input
                     type="text"
                     class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                    id="exampleFormControlInput2"
+                    id="email"
                     placeholder="Email address"
+                    onChange={handleChange}
+                    value={input.email}
+                    name="email"
                   />
                 </div>
 
@@ -92,8 +126,11 @@ export default function LoginPage(params) {
                   <input
                     type="password"
                     class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                    id="exampleFormControlInput2"
+                    id="password"
                     placeholder="Password"
+                    onChange={handleChange}
+                    value={input.password}
+                    name="password"
                   />
                 </div>
 
