@@ -3,19 +3,52 @@ import {
   AiOutlineShoppingCart,
   AiFillSetting,
 } from "react-icons/ai";
+import io from "socket.io-client";
+import axios from 'axios'
 import { BsPeople } from "react-icons/bs";
 import { CgProfile, CgShapeCircle } from "react-icons/cg";
 import { HiOutlineEmojiHappy } from "react-icons/hi";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ShopLive from "../components/ShopLive/ShopLive";
+import ScrollToBottom from "react-scroll-to-bottom";
 const video =
   "https://file-examples.com/storage/feefe3d0dd63b5a899e4775/2017/04/file_example_MP4_480_1_5MG.mp4";
+const socket = io.connect("http://localhost:3001");
 export default function StreamingPage() {
   const [show, setShow] = useState(false);
+  const [currentMessage, setCurrentMessage] = useState("");
+  const [messageList, setMessageList] = useState([]);
   const toggle = () => {
     setShow(!show);
   };
-
+  // for message
+  const sendMessage = async () => {
+    console.log(`send mesage`);
+    if (currentMessage !== "") {
+      const messageData = {
+        user: "ayam",
+        message: currentMessage,
+        time:
+          new Date(Date.now()).getHours() +
+          ":" +
+          new Date(Date.now()).getMinutes(),
+      };
+      await socket.emit("send_message", messageData);
+      // === for clear chat box ===
+      setCurrentMessage("");
+    }
+  };
+  useEffect(() => {
+    socket.on("receive_message", (data) => {
+      // socket.emit("receive_message", data);
+      console.log(data, `<<< data receive message`);
+      setMessageList((message) => [...message, data]);
+      const getMessage = async () =>{
+        const resp = await axios.get("http://localhost:3001/msg")
+        setMessageList(resp.data)
+      }
+    });
+  }, [socket]);
   return (
     <>
       <section className="bg-hero-bg bg-no-repeat bg-cover h-full w-auto pb-24">
@@ -54,104 +87,20 @@ export default function StreamingPage() {
               <div className="flex flex-col gap-2 my-3 px-3">
                 <div className="flex items-center">
                   <CgProfile className="mr-2 text-2xl" />
-                  <div className="flex items-center">
-                    <h3 className="text-xl font-medium text-[#5c17c5] -mt-1">
-                      ravonuz:
-                    </h3>
-                    <span className="ml-2 font-normal text-white">
-                      chat guys
-                    </span>
-                  </div>
-                </div>
-
-                <div className="flex items-center">
-                  <CgProfile className="mr-2 text-2xl" />
-                  <div className="flex items-center">
-                    <h3 className="text-xl font-medium text-[#5c17c5] -mt-1">
-                      SillenDillenG:
-                    </h3>
-                    <span className="ml-2 font-normal text-white">
-                      PagMan op
-                    </span>
-                  </div>
-                </div>
-
-                <div className="flex items-center">
-                  <CgProfile className="mr-2 text-2xl" />
-                  <div className="flex items-center">
-                    <h3 className="text-xl font-medium text-[#5c17c5] -mt-1">
-                      alpinix_0:{" "}
-                    </h3>
-                    <span className="ml-2 font-normal text-white">
-                      monkaEyes
-                    </span>
-                  </div>
-                </div>
-
-                <div className="flex items-center">
-                  <CgProfile className="mr-2 text-2xl" />
-                  <div className="flex items-center">
-                    <h3 className="text-xl font-medium text-[#5c17c5] -mt-1">
-                      Duredzu:{" "}
-                    </h3>
-                    <span className="ml-2 font-normal text-white">hold me</span>
-                  </div>
-                </div>
-
-                <div className="flex items-center">
-                  <CgProfile className="mr-2 text-2xl" />
-                  <div className="flex items-center">
-                    <h3 className="text-xl font-medium text-[#5c17c5] -mt-1">
-                      criseast555:{" "}
-                    </h3>
-                    <span className="ml-2 font-normal text-white">monkaW</span>
-                  </div>
-                </div>
-
-                <div className="flex items-center">
-                  <CgProfile className="mr-2 text-2xl" />
-                  <div className="flex items-center">
-                    <h3 className="text-xl font-medium text-[#5c17c5] -mt-1">
-                      clemonr6:{" "}
-                    </h3>
-                    <span className="ml-2 font-normal text-white">!uptime</span>
-                  </div>
-                </div>
-
-                <div className="flex items-center">
-                  <CgProfile className="mr-2 text-2xl" />
-                  <div className="flex items-center">
-                    <h3 className="text-xl font-medium text-[#5c17c5] -mt-1">
-                      Big_Fudgge:{" "}
-                    </h3>
-                    <span className="ml-2 font-normal text-white">
-                      PepegaChat
-                    </span>
-                  </div>
-                </div>
-
-                <div className="flex items-center">
-                  <CgProfile className="mr-2 text-2xl" />
-                  <div className="flex items-center">
-                    <h3 className="text-xl font-medium text-[#5c17c5] -mt-1">
-                      Vuskyy:{" "}
-                    </h3>
-                    <span className="ml-2 font-normal text-white">
-                      xQcOW chatr
-                    </span>
-                  </div>
-                </div>
-
-                <div className="flex items-center">
-                  <CgProfile className="mr-2 text-2xl" />
-                  <div className="flex items-center">
-                    <h3 className="text-xl font-medium text-[#5c17c5] -mt-1">
-                      Big_Fudgge:{" "}
-                    </h3>
-                    <span className="ml-2 font-normal text-white">
-                      PepegaChat
-                    </span>
-                  </div>
+                  <ScrollToBottom>
+                  {messageList.map((el) => {
+                    return (
+                      <div className="flex items-center" key={el.id}>
+                        <h3 className="text-xl font-medium text-[#5c17c5] -mt-1">
+                          {el.user}:
+                        </h3>
+                        <span className="ml-2 font-normal text-white">
+                          {el.message}
+                        </span>
+                      </div>
+                    );
+                  })}
+                  </ScrollToBottom>
                 </div>
               </div>
 
@@ -159,7 +108,14 @@ export default function StreamingPage() {
                 <input
                   className="py-2 pl-3 bg-[#3d3d40] placeholder-white w-full rounded-md"
                   type="text"
+                  value={currentMessage}
                   placeholder="Send a Message"
+                  onChange={(e) => {
+                    setCurrentMessage(e.target.value);
+                  }}
+                  onKeyPress={(e) => {
+                    e.key === "Enter" && sendMessage();
+                  }}
                 />
                 <HiOutlineEmojiHappy className="absolute top-[10px] right-5 text-xl" />
               </div>
@@ -171,7 +127,10 @@ export default function StreamingPage() {
                 </div>
                 <div className="flex items-center gap-3">
                   <AiFillSetting className="text-xl" />
-                  <button className="py-1 px-3 text-white font-medium rounded-md bg-[#5c17c5]">
+                  <button
+                    onClick={sendMessage}
+                    className="py-1 px-3 text-white font-medium rounded-md bg-[#5c17c5]"
+                  >
                     Send
                   </button>
                 </div>

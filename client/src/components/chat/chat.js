@@ -8,7 +8,7 @@ export default function Chat({ socket, username, room }) {
   const sendMessage = async () => {
     if (currentMessage !== "") {
       const messageData = {
-        room: room,
+        // room: room,
         user: username,
         message: currentMessage,
         time:
@@ -18,7 +18,7 @@ export default function Chat({ socket, username, room }) {
       };
 
       await socket.emit("send_message", messageData);
-      setMessageList((message) => [...message, messageData]);
+      // setMessageList((message) => [...message, messageData]);
       // === for clear chat box ===
       setCurrentMessage("");
     }
