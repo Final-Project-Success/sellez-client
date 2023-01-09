@@ -12,9 +12,13 @@ import { useState, useEffect } from "react";
 import ShopLive from "../components/ShopLive/ShopLive";
 import AgoraUIKit from "agora-react-uikit";
 import ScrollToBottom from "react-scroll-to-bottom";
-
+import { useChatsQuery, useAddChatMutation } from "../features/apiChat";
+const video =
+  "https://file-examples.com/storage/feefe3d0dd63b5a899e4775/2017/04/file_example_MP4_480_1_5MG.mp4";
 const socket = io.connect("http://localhost:3001");
 export default function StreamingPage() {
+  const { data, error, isLoading } = useChatsQuery();
+  console.log(data, `<<<< data message useChattquery`);
   const [show, setShow] = useState(false);
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
@@ -44,10 +48,10 @@ export default function StreamingPage() {
       // socket.emit("receive_message", data);
       console.log(data, `<<< data receive message`);
       setMessageList((message) => [...message, data]);
-      const getMessage = async () => {
-        const resp = await axios.get("http://localhost:3001/msg");
-        setMessageList(resp.data);
-      };
+      // const getMessage = async () =>{
+      //   const resp = await axios.get("http://localhost:10000/msg")
+      //   setMessageList(resp.data)
+      // }
     });
   }, [socket]);
   const [videoCallHost, setVideoCallHost] = useState(false);
@@ -132,17 +136,18 @@ export default function StreamingPage() {
           </div>
 
           {/* chat box */}
+     
           <div className="h-[600px] w-[25%] bg-[#18181b] shadow-xl relative text-white border rounded-sm">
+          <ScrollToBottom className="h-[500px]"/>
             <div className="flex justify-between py-3 px-4 border-b border-gray-300 shadow-md">
               <h2 className="text-lg font-medium">Stream Chat</h2>
               <BsPeople className="text-xl" />
             </div>
             <div className="absolute bottom-0 w-full">
               <div className="flex flex-col gap-2 my-3 px-3">
-                <div className="flex items-center">
+                
                   <CgProfile className="mr-2 text-2xl" />
-                  <ScrollToBottom>
-                    {messageList.map((el) => {
+                    {/* {data?.map((el) => {
                       return (
                         <div className="flex items-center" key={el.id}>
                           <h3 className="text-xl font-medium text-[#5c17c5] -mt-1">
@@ -153,9 +158,7 @@ export default function StreamingPage() {
                           </span>
                         </div>
                       );
-                    })}
-                  </ScrollToBottom>
-                </div>
+                    })}  */}
               </div>
 
               <div className="relative px-3">
@@ -191,6 +194,7 @@ export default function StreamingPage() {
               </div>
             </div>
           </div>
+          <ScrollToBottom/>
         </div>
       </section>
       <ShopLive drawer={show} toggle={toggle} />
