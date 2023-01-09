@@ -11,10 +11,13 @@ import { HiOutlineEmojiHappy } from "react-icons/hi";
 import { useState, useEffect } from "react";
 import ShopLive from "../components/ShopLive/ShopLive";
 import ScrollToBottom from "react-scroll-to-bottom";
+import { useChatLive } from "../features/apiChat";
 const video =
   "https://file-examples.com/storage/feefe3d0dd63b5a899e4775/2017/04/file_example_MP4_480_1_5MG.mp4";
 const socket = io.connect("http://localhost:3001");
 export default function StreamingPage() {
+  const { data, error, isLoading } = useChatLive();
+  console.log(data, `<<<< data message`);
   const [show, setShow] = useState(false);
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
@@ -43,10 +46,10 @@ export default function StreamingPage() {
       // socket.emit("receive_message", data);
       console.log(data, `<<< data receive message`);
       setMessageList((message) => [...message, data]);
-      const getMessage = async () =>{
-        const resp = await axios.get("http://localhost:3001/msg")
-        setMessageList(resp.data)
-      }
+      // const getMessage = async () =>{
+      //   const resp = await axios.get("http://localhost:10000/msg")
+      //   setMessageList(resp.data)
+      // }
     });
   }, [socket]);
   return (
