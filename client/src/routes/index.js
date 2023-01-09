@@ -12,6 +12,8 @@ import DetailPage from "../pages/DetailPage";
 import RegisterPage from "../pages/RegisterPage";
 
 import StreamingPage from "../pages/StreamingPage";
+import OrderPage from "../pages/OrderPage/OrderPage";
+import CheckoutPage from "../pages/CheckoutPage/CheckoutPage";
 
 
 const router = createBrowserRouter([
@@ -29,6 +31,14 @@ const router = createBrowserRouter([
       {
         path: "/shop",
         element: <ShopPage />,
+      },
+      {
+        path: "/order",
+        element: <OrderPage />,
+      },
+      {
+        path: "/checkout",
+        element: <CheckoutPage/>,
       },
       {
         path: "/streaming",

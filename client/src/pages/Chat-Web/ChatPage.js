@@ -9,8 +9,8 @@ export default function ChatPage() {
   const [showChat, setShowChat] = useState(false);
 
   const joinRoom = () => {
-    if (username !== "" && room !== "") {
-      socket.emit("join_room", room);
+    if (username !== "") {
+      // socket.emit("join_room", room);
       // for show the chat
       setShowChat(true);
     }
@@ -27,17 +27,17 @@ export default function ChatPage() {
               setUsername(e.target.value);
             }}
           />
-          <input
+          {/* <input
             type="text"
             placeholder="Room ID"
             onChange={(e) => {
               setRoom(e.target.value);
             }}
-          />
+          /> */}
           <button onClick={joinRoom}>Join A Room</button>
         </div>
       ) : (
-        <Chat socket={socket} username={username} room={room} />
+        <Chat socket={socket} username={username}/>
       )}
     </div>
   );
