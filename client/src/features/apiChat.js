@@ -17,7 +17,7 @@ export const chatsApi = createApi({
   }),
 });
 
-export const { useChatLive } = chatsApi;
+export const { useChatsQuery, useAddChatMutation } = chatsApi;
 // import axios from 'axios'
 
 // const chatsApi = axios.create({
