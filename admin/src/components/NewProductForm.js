@@ -2,8 +2,52 @@ import foto from "../assets/sellez-logoo.jpg";
 import { faArrowRight, faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { createProduct } from "../stores/actions/product";
+import Swal from "sweetalert2";
 
 export default function NewProductForm() {
+  const [input, setInput] = useState({
+    name: "",
+    price: "",
+    stock: "",
+    description: "",
+    imgUrl: [],
+  });
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleChange = (event) => {
+    const value = event.target.value;
+    const name = event.target.name;
+    
+
+    setInput({
+      ...input,
+      [name]: value,
+    });
+  };
+
+  const handleChangeFile = (e) => {
+    console.log(e.target.files);
+    setInput({
+      ...input,
+      imgUrl: [ ...input.imgUrl, e.target.files]
+    })
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(createProduct(input));
+    console.log(input);
+    Swal.fire("Good job!", `${input.name} successfully added`, "success");
+
+    navigate("/");
+  };
+
   return (
     <>
       <div style={{ marginTop: 10, marginLeft: 50 }}>
@@ -15,114 +59,96 @@ export default function NewProductForm() {
         </Link>
       </div>
 
-      <div class="grid max-w-screen-xl grid-cols-1 gap-8 px-8 py-16 mx-auto rounded-lg md:grid-cols-2 md:px-12 lg:px-16 xl:px-32 dark:bg-gray-800 dark:text-gray-100">
-        <div class="flex flex-col justify-between">
+      <div className="grid max-w-screen-xl grid-cols-1 gap-8 px-8 py-16 mx-auto rounded-lg md:grid-cols-2 md:px-12 lg:px-16 xl:px-32 dark:bg-gray-800 dark:text-gray-100">
+        <div className="flex flex-col justify-between">
           <img
             src={foto}
-            alt=""
+            alt="logo"
             style={{ width: 500, marginTop: 120, paddingRight: 50 }}
           />
         </div>
-        <form novalidate="" class="space-y-6 ng-untouched ng-pristine ng-valid">
+        <form
+          onSubmit={handleSubmit}
+          encType='multipart/form-data'
+          className="space-y-6 ng-untouched ng-pristine ng-valid"
+        >
           <div>
-            <label for="name" class="text-sm">
+            <label htmlFor="name" className="text-sm">
               Product Name
             </label>
             <input
               id="name"
               type="text"
-              placeholder=""
-              class="w-full p-3 rounded dark:bg-gray-800"
+              placeholder="name"
+              onChange={handleChange}
+              value={input.name}
+              name="name"
+              className="w-full p-3 rounded dark:bg-gray-800"
             />
           </div>
           <div>
-            <label for="price" class="text-sm">
+            <label htmlFor="price" className="text-sm">
               Price
             </label>
             <input
               id="price"
               type="number"
-              class="w-full p-3 rounded dark:bg-gray-800"
+              onChange={handleChange}
+              value={input.price}
+              name="price"
+              className="w-full p-3 rounded dark:bg-gray-800"
             />
           </div>
           <div>
-            <label for="stock" class="text-sm">
+            <label htmlFor="stock" className="text-sm">
               Stock Available
             </label>
             <input
               id="stock"
               type="number"
-              class="w-full p-3 rounded dark:bg-gray-800"
+              onChange={handleChange}
+              value={input.stock}
+              name="stock"
+              className="w-full p-3 rounded dark:bg-gray-800"
             />
           </div>
           <div>
-            <label for="message" class="text-sm">
+            <label htmlFor="message" className="text-sm">
               Description
             </label>
             <textarea
               id="message"
               rows="3"
-              class="w-full p-3 rounded dark:bg-gray-800"
+              onChange={handleChange}
+              value={input.description}
+              name="description"
+              className="w-full p-3 rounded dark:bg-gray-800"
             ></textarea>
           </div>
 
           <div className="grid grid-cols-2">
             <label
-              class="block mb-6 text-sm font-medium text-gray-900 dark:text-white"
-              for="file_input"
+              className="block mb-6 text-sm font-medium text-gray-900 dark:text-white"
+              htmlFor="file_input"
             >
-              Image 1
+              Images
             </label>
             <input
-              class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+              className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
               aria-describedby="file_input_help"
               id="file_input"
+              name="imgUrl"
               type="file"
+              onChange={handleChangeFile}
+              multiple
             />
 
-            <label
-              class="block mb-6 text-sm font-medium text-gray-900 dark:text-white"
-              for="file_input"
-            >
-              Image 2
-            </label>
-            <input
-              class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-              aria-describedby="file_input_help"
-              id="file_input"
-              type="file"
-            />
-
-            <label
-              class="block mb-6 text-sm font-medium text-gray-900 dark:text-white"
-              for="file_input"
-            >
-              Image 3
-            </label>
-            <input
-              class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-              aria-describedby="file_input_help"
-              id="file_input"
-              type="file"
-            />
-
-            <label
-              class="block mb-6 text-sm font-medium text-gray-900 dark:text-white"
-              for="file_input"
-            >
-              Image 4
-            </label>
-            <input
-              class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-              aria-describedby="file_input_help"
-              id="file_input"
-              type="file"
-            />
+           
           </div>
 
           <button
             type="submit"
-            class="w-full p-3 text-sm font-bold tracking-wide uppercase rounded bg-blue-500 text-white"
+            className="w-full p-3 text-sm font-bold tracking-wide uppercase rounded bg-blue-500 text-white"
           >
             Post
             <FontAwesomeIcon icon={faArrowRight} style={{ marginLeft: 6 }} />
