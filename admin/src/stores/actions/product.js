@@ -32,3 +32,27 @@ export function deleteProduct(id) {
     }
   };
 }
+
+export function createProduct(input) {
+  return async (dispatch) => {
+    try {
+      const form = new FormData()
+      input.imgUrl.forEach(element => {
+        form.append('imgUrl', element)
+      });
+      const { data } = await axios ({
+        method: 'POST',
+        url: `${baseUrl}/products`,
+        data: form,
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+
+      })  
+      console.log(input.imgUrl);
+      dispatch(fetchProducts());
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}

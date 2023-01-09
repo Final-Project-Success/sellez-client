@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import sellez from '../assets/sellez-logoo.jpg'
 import { login } from "../stores/actions/user";
-import Swal from "sweetalert2";
+
 
 export default function Login() {
   const navigate = useNavigate();
@@ -30,19 +30,17 @@ export default function Login() {
     dispatch(login(input))
     .then((result) => {
       if(result) {
-        localStorage.setItem('access_token', result.access_token)
+        localStorage.setItem('access_token', result.access_token)        
          navigate('/')
       }
-      console.log(result);
     })
   };
-
     return (
         <>
 <section className="relative bg-blue-200 flex flex-wrap lg:h-screen lg:items-center">
   <div className="w-full px-4 py-12 sm:px-6 sm:py-16 lg:w-1/2 lg:px-8 lg:py-24">
     <div className="mx-auto max-w-lg text-center">
-      <h1 className="text-2xl font-bold sm:text-3xl">Sellez Admin Login</h1>
+      <h1 className="text-2xl font-bold sm:text-3xl text-blue-500 ">Sellez Admin Side</h1>
 
       <p className="mt-4 text-gray-500">
         Only Sellez's admin can sign in to this admin site.
