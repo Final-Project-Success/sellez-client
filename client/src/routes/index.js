@@ -9,7 +9,11 @@ import ProfileEdit from "../components/ProfileEdit";
 import Favorites from "../components/Favorites";
 import BaseLayout from "../pages/BaseLayout";
 import DetailPage from "../pages/DetailPage";
+
 import RegisterPage from "../pages/RegisterPage";
+
+import StreamingPage from "../pages/StreamingPage";
+
 
 const router = createBrowserRouter([
   {
@@ -26,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "/shop",
         element: <ShopPage />,
+      },
+      {
+        path: "/streaming",
+        element: <StreamingPage />,
       },
       {
         path: "/account",
@@ -51,6 +59,7 @@ const router = createBrowserRouter([
     path: "/detail-page",
     element: <DetailPage />,
   },
+
   {
     path: "/login",
     element: <LoginPage />,

@@ -5,6 +5,7 @@ import { BsSuitHeart } from "react-icons/bs";
 import { BiShoppingBag } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import { selectTotalQTY, setOpenCart } from "../features/CartSlice.js";
+import { RiLiveLine } from "react-icons/ri";
 export default function NewNavbar() {
   const [navState, setNavState] = useState(false);
   const dispatch = useDispatch();
@@ -22,6 +23,9 @@ export default function NewNavbar() {
     } else {
       setNavState(false);
     }
+  };
+  const goToStreamingPge = () => {
+    window.location.href = "/streaming";
   };
   useEffect(() => {
     window.addEventListener("scroll", onNavScroll);
@@ -83,6 +87,13 @@ export default function NewNavbar() {
                   {totalQTY}
                 </div>
               </button>
+            </li>
+            <li className="grid items-center" onClick={goToStreamingPge}>
+              <RiLiveLine
+                className={`icon-style ${
+                  navState && "text-slate-900 transition-all duration-300"
+                }`}
+              />
             </li>
           </ul>
         </nav>
