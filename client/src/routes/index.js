@@ -10,9 +10,8 @@ import Favorites from "../components/Favorites";
 import BaseLayout from "../pages/BaseLayout";
 import DetailPage from "../pages/DetailPage";
 import StreamingPage from "../pages/StreamingPage";
-import ChatPageNew from "../pages/ChatPageNew";
-
-// import DetailPageNew from "../pages/DetailPagesNew";
+import OrderPage from "../pages/OrderPage/OrderPage";
+import CheckoutPage from "../pages/CheckoutPage/CheckoutPage";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +32,14 @@ const router = createBrowserRouter([
       {
         path: "/shop",
         element: <ShopPage />,
+      },
+      {
+        path: "/order",
+        element: <OrderPage />,
+      },
+      {
+        path: "/checkout",
+        element: <CheckoutPage />,
       },
       {
         path: "/streaming",
