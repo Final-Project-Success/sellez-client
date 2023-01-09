@@ -136,30 +136,31 @@ export default function StreamingPage() {
           </div>
 
           {/* chat box */}
-     
-          <div className="h-[600px] w-[25%] bg-[#18181b] shadow-xl relative text-white border rounded-sm">
-          <ScrollToBottom className="h-[500px]"/>
+
+          <div className="h-[700px] w-[25%] bg-[#18181b] shadow-xl relative text-white border rounded-sm">
             <div className="flex justify-between py-3 px-4 border-b border-gray-300 shadow-md">
               <h2 className="text-lg font-medium">Stream Chat</h2>
+
               <BsPeople className="text-xl" />
             </div>
+            <ScrollToBottom className="h-[500px]">
+              {data?.map((el) => {
+                return (
+                  <div className="flex items-center" key={el.id}>
+                    <h3 className="text-xl font-medium text-[#5c17c5] -mt-1">
+                      {el.user}:
+                    </h3>
+                    <span className="ml-2 font-normal text-white">
+                      {el.message}
+                    </span>
+                  </div>
+                );
+              })}
+            </ScrollToBottom>
             <div className="absolute bottom-0 w-full">
-              <div className="flex flex-col gap-2 my-3 px-3">
-                
-                  <CgProfile className="mr-2 text-2xl" />
-                    {/* {data?.map((el) => {
-                      return (
-                        <div className="flex items-center" key={el.id}>
-                          <h3 className="text-xl font-medium text-[#5c17c5] -mt-1">
-                            {el.user}:
-                          </h3>
-                          <span className="ml-2 font-normal text-white">
-                            {el.message}
-                          </span>
-                        </div>
-                      );
-                    })}  */}
-              </div>
+              {/* <div className="flex flex-col gap-2 my-3 px-3">
+                <CgProfile className="mr-2 text-2xl" />
+              </div> */}
 
               <div className="relative px-3">
                 <input
@@ -194,7 +195,6 @@ export default function StreamingPage() {
               </div>
             </div>
           </div>
-          <ScrollToBottom/>
         </div>
       </section>
       <ShopLive drawer={show} toggle={toggle} />
