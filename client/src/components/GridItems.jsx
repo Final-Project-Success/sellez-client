@@ -28,7 +28,7 @@ export default function GridItems({
   return (
     <>
       <div
-        className={`relative bg-gradient-to-b ${color} ${shadow} grid items-center justify-items-center rounded-xl py-4 px-5 transition-all duration-700 ease-in-out w-full hover:scale-105`}
+        className={`relative bg-gradient-to-b ${color}  grid items-center justify-items-center rounded-xl py-4 px-5 transition-all duration-700 ease-in-out w-full hover:scale-105`}
       >
         <div className={`grid items-center justify-items-center`}>
           <h1 className="text-slate-200 text-xl lg:text-lg md:text-base font-medium filter drop-shadow">

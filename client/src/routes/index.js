@@ -43,7 +43,7 @@ const router = createBrowserRouter([
         element: <StreamingPage />,
       },
       {
-        path: "/detail-page",
+        path: "/detail-page/:id",
         element: <DetailPage />,
       },
       {

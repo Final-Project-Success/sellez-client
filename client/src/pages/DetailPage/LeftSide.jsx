@@ -1,24 +1,26 @@
 import { useState } from "react";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
+import { useGetProductByIdQuery } from "../../features/apiSlice";
+import { useParams } from "react-router-dom";
+
 export default function LeftSide() {
   const [quantity, setQuantity] = useState(1);
+  // how to get params id
+  let { id } = useParams();
+
+  const { data, isLoading, error } = useGetProductByIdQuery(id);
+  console.log(data);
   return (
     <div className="w-[35%] pr-4">
       <div>
         {/* <!-- Heading --> */}
         <h1 className="text-3xl text-mainTextColor font-bold uppercase">
-          Product Title Will goes here doesn't matter long or short. (justified)
+          {data?.name}
         </h1>
 
         {/* <!-- Description --> */}
         <div className="my-6 pr-4">
-          <p className="text-mainTextColor font-medium">
-            Here you can write the product description Lorem ipsum dolor sit,
-            amet consectetur adipisicing elit. Explicabo mollitia necessitatibus
-            quidem labore corrupti! Sequi ducimus porro quis enim aliquam!
-            necessitatibus quidem labore corrupti! Sequi ducimus porro quis enim
-            aliquam!
-          </p>
+          <p className="text-mainTextColor font-medium">{data?.description}</p>
         </div>
 
         {/* <!-- Quantity Button --> */}
