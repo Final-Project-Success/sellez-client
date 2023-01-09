@@ -1,7 +1,49 @@
 import logo from "./images/sellez-logoo.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useRegisterMutation } from "../features/apiUser";
+import { useState } from "react";
 
 export default function RegisterPage() {
+  const navigate = useNavigate();
+  const [register] = useRegisterMutation();
+
+  const [input, setInput] = useState({
+    username: "",
+    email: "",
+    password: "",
+    address: "",
+    profilePict: "",
+    role: "customer",
+    phoneNumber: "",
+  });
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    const name = e.target.name;
+    setInput({
+      ...input,
+      [name]: value,
+    });
+    console.log(input);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    register(input).then((result) => {
+      if (result.data) {
+        navigate("/login");
+        setInput({
+          username: "",
+          email: "",
+          password: "",
+          address: "",
+          profilePict: "",
+          role: "customer",
+          phoneNumber: "",
+        });
+      }
+    });
+  };
   return (
     <>
       <section class="h-screen">
@@ -11,18 +53,18 @@ export default function RegisterPage() {
               <img src={logo} style={{ width: 700 }} alt="Sample image" />
             </div>
             <div class="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
-            <p class="text-lg mb-10 mr-4 font-bold">Create new account!</p>
+              <p class="text-lg mb-10 mr-4 font-bold">Create new account!</p>
 
-              <form>
-             
+              <form onSubmit={handleSubmit}>
                 <div class="mb-6">
-
                   <input
                     type="text"
                     class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                     id="username"
                     placeholder="username"
                     name="username"
+                    onChange={handleChange}
+                    value={input.username}
                   />
                 </div>
 
@@ -33,6 +75,8 @@ export default function RegisterPage() {
                     id="email"
                     placeholder="Email address"
                     name="email"
+                    onChange={handleChange}
+                    value={input.email}
                   />
                 </div>
 
@@ -43,6 +87,8 @@ export default function RegisterPage() {
                     id="password"
                     placeholder="Password"
                     name="password"
+                    onChange={handleChange}
+                    value={input.password}
                   />
                 </div>
 
@@ -53,6 +99,8 @@ export default function RegisterPage() {
                     id="address"
                     placeholder=" address"
                     name="address"
+                    onChange={handleChange}
+                    value={input.address}
                   />
                 </div>
 
@@ -76,6 +124,8 @@ export default function RegisterPage() {
                     id="phone number"
                     placeholder=" phone number"
                     name="phoneNumber"
+                    onChange={handleChange}
+                    value={input.phoneNumber}
                   />
                 </div>
 
@@ -87,7 +137,7 @@ export default function RegisterPage() {
 
                 <div class="text-center lg:text-left">
                   <button
-                    type="button"
+                    type="submit"
                     class="inline-block px-7 py-3 bg-yellow-300 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-200 ease-in-out"
                   >
                     Sign Up
