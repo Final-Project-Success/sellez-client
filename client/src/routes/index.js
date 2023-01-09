@@ -10,6 +10,9 @@ import Favorites from "../components/Favorites";
 import BaseLayout from "../pages/BaseLayout";
 import DetailPage from "../pages/DetailPage";
 import StreamingPage from "../pages/StreamingPage";
+import ChatPageNew from "../pages/ChatPageNew";
+
+// import DetailPageNew from "../pages/DetailPagesNew";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +39,10 @@ const router = createBrowserRouter([
         element: <StreamingPage />,
       },
       {
+        path: "/detail-page",
+        element: <DetailPage />,
+      },
+      {
         path: "/account",
         element: <AccountPage />,
         children: [
@@ -54,10 +61,6 @@ const router = createBrowserRouter([
         ],
       },
     ],
-  },
-  {
-    path: "/detail-page",
-    element: <DetailPage />,
   },
 ]);
 
