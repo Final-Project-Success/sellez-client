@@ -3,7 +3,7 @@ import { googleProvider } from "../../config/auth-sosmed";
 import socialMediaAuth from "../../sevices/auth";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "../images/sellez-logoo.jpg";
+import logo from "../../assets/sellez-logoo.jpg";
 import { Link } from "react-router-dom";
 import {
   useLoginMutation,

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import img from "../assets/product8.png";
 
 export default function FlexContent({ ifExists }) {
@@ -12,19 +13,21 @@ export default function FlexContent({ ifExists }) {
           <h1 className="text-4xl sm:text-3xl font-bold text-gradient">
             NIKE AIR WITH LIMITLESS CHOICES
           </h1>
-          <h1 className="text-5xl lg:text-4xl md:text-3xl sm:text-2xl font-bold text-slate-900 filter drop-shadow-lg"></h1>
+          <h1 className="text-5xl lg:text-4xl md:text-3xl sm:text-2xl font-bold text-slate-900 filter drop-shadow-lg">
+            No excuses, just results.
+          </h1>
           <p className="xl:text-sm my-4 text-slate-900">
             Our Purpose is to move the world forward. We take action by building
             community, protecting our planet and increasing access to sport.
           </p>
-          <a className="flex items-center" target={"_blank"} role="button">
+          <Link className="flex items-center" target={"_blank"} role="button">
             <button
               type="button"
               className="button-theme bg-slate-900 shadow-slate-900 text-slate-100 py-1.5"
             >
               BUY NOW
             </button>
-          </a>
+          </Link>
         </div>
         <div className="flex items-center justify-center max-w-xl relative lg:max-w-none w-full">
           <img

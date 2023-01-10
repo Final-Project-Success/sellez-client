@@ -9,21 +9,21 @@ const Profile =
 export default function ChatPage() {
   const [username, setUsername] = useState("");
   const [room, setRoom] = useState("");
-  const [showChat, setShowChat] = useState(false);
+  // const [showChat, setShowChat] = useState(false);
   const [openChat, setOpenChat] = useState(true);
 
-  const joinRoom = () => {
-    setUsername({
-      ...username,
-      username: localStorage.getItem("username"),
-    });
-    setRoom({
-      ...room,
-      room: `room-${localStorage.email}`,
-    });
-    socket.emit("join_room", room);
-    setOpenChat(!openChat);
-  };
+  // const joinRoom = () => {
+  //   setUsername({
+  //     ...username,
+  //     username: localStorage.getItem("username"),
+  //   });
+  //   setRoom({
+  //     ...room,
+  //     room: `room-${localStorage.email}`,
+  //   });
+  //   socket.emit("join_room", room);
+  //   setOpenChat(!openChat);
+  // };
   return (
     <>
       <div
