@@ -60,7 +60,7 @@ export default function StreamingPage() {
     channel: "channel", // your agora channel,
     role: localStorage.role === "admin" ? "host" : "audience",
     token:
-      "007eJxTYHisNmVFoX9NuGXzEXkPN+tDz79YPvu4gGN7Te/ucLk8/VsKDBZpJmaWiQaJickGhiYmiSaJhuZJRinJBgbGKaaGqSbGO+p2JzcEMjKslFzGysgAgSA+O0NyRmJeXmoOAwMA0tEhKA==", // use null or skip if using app in testing mode
+      "007eJxTYFDrTvH1ErrBIDavKyKjzEx9U9dK0y1BSZo7Y5JSv3769FOBwSLNxMwy0SAxMdnA0MQk0STR0DzJKCXZwMA4xdQw1cTYvHlvckMgI0NCQi8jIwMEgvjsDMkZiXl5qTkMDAAv7h9T", // use null or skip if using app in testing mode
   };
   const callbacks = {
     EndCall: () => setVideoCall(false),
