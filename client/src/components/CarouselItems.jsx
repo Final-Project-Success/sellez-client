@@ -16,8 +16,22 @@ export default function CarouselItems({
   const dispatch = useDispatch();
   const onAddToCart = () => {
     const item = { id, name, text, imgUrl, color, shadow, price };
-
+    const rupiah = (number) => {
+      return new Intl.NumberFormat("id-ID", {
+        style: "currency",
+        currency: "IDR",
+      }).format(number);
+    };
+    rupiah(price, "????");
+    console.log(price);
     dispatch(setAddItemToCart(item));
+  };
+
+  const rupiah = (number) => {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+    }).format(number);
   };
 
   const onCartToggle = () => {
@@ -42,7 +56,9 @@ export default function CarouselItems({
 
           <div className="flex items-center justify-between w-28 my-2">
             <div className="flex items-center bg-white/80  px-1 rounded blur-effect-theme">
-              <h1 className="text-black text-sm font-medium">${price}</h1>
+              <h1 className="text-black text-sm font-medium">
+                {rupiah(price)}
+              </h1>
             </div>
           </div>
 
