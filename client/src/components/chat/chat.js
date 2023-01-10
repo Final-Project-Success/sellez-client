@@ -14,6 +14,7 @@ export default function Chat({ socket, username, room, toggle }) {
   // const roomNumb = () =>{
   //   socket.emit("join_room", room)
   // }
+  console.log(username, "<<<");
 
   const sendMessage = async () => {
     if (currentMessage !== "") {
@@ -58,9 +59,7 @@ export default function Chat({ socket, username, room, toggle }) {
           </div>
           <div>
             <div className="relative h-12 w-12 grid place-items-center mx-auto bg-[#116cfc] rounded-full shadow-lg">
-              <h1 className="text-3xl capitalize text-white">
-                {username.slice(0, 1)}
-              </h1>
+              <h1 className="text-3xl capitalize text-white">{username}</h1>
               <span className="absolute w-3 h-3 block right-[1px] bottom-1 rounded-full bg-green-500 shadow-lg"></span>
             </div>
             <h3 className="capitalize text-center">{username}</h3>
