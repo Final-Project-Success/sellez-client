@@ -1,7 +1,4 @@
-import {Link} from 'react-router-dom'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
-import { useDispatch, useSelector } from 'react-redux';
+  import { useDispatch, useSelector } from 'react-redux';
 import {useEffect} from 'react'
 import OrderRow from './OrderRow';
 import { fetchOrders } from '../stores/actions/order';
