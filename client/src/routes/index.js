@@ -13,6 +13,10 @@ import StreamingPage from "../pages/StreamingPage";
 import OrderPage from "../pages/OrderPage/OrderPage";
 import CheckoutPage from "../pages/CheckoutPage/CheckoutPage";
 import DetailPage from "../pages/DetailPage/DetailPage";
+<<<<<<< HEAD
+import RegisterPage from "../pages/RegisterPage";
+=======
+>>>>>>> 2bb0d8f60214762b0e1d1d6169fa23e76d1c6f55
 
 const router = createBrowserRouter([
   {
@@ -66,6 +70,34 @@ const router = createBrowserRouter([
       },
     ],
   },
+<<<<<<< HEAD
+  {
+    path: "/detail-page",
+    element: <DetailPage />,
+  },
+
+  {
+    path: "/login",
+    element: <LoginPage />,
+    loader: () => {
+      if (localStorage.access_token) return redirect("/");
+      else {
+        return null;
+      }
+    },
+  },
+  {
+    path: "/register",
+    element: <RegisterPage />,
+    loader: () => {
+      if (localStorage.access_token) return redirect("/");
+      else {
+        return null;
+      }
+    },
+  },
+=======
+>>>>>>> 2bb0d8f60214762b0e1d1d6169fa23e76d1c6f55
 ]);
 
 export default router;
