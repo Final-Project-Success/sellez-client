@@ -1,6 +1,6 @@
 import psale2 from "../assets/product2.png";
 import GridItems from "./GridItems";
-
+import { useGetProductsQuery } from "../features/apiSlice";
 export default function TopSales() {
   const popularsales = {
     title: "Popular Sales",
@@ -95,6 +95,8 @@ export default function TopSales() {
       },
     ],
   };
+  const { data: products, loading, error } = useGetProductsQuery();
+  // console.log(products, "iniiii");
   return (
     <>
       <div className="nike-container">
@@ -107,9 +109,15 @@ export default function TopSales() {
           </h1>
         </div>
         <div className="grid items-center justify-items-center gap-7 lg:gap-5 mt-7 grid-cols-4 xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
-          {popularsales.items?.map((item, i) => (
-            <GridItems {...item} key={i} />
-          ))}
+          {!products ? (
+            ""
+          ) : (
+            <>
+              {products?.map((item, i) => (
+                <GridItems {...item} key={i} />
+              ))}
+            </>
+          )}
         </div>
       </div>
     </>

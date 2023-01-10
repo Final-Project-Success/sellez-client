@@ -8,12 +8,12 @@ import ManageAccount from "../components/MangeAccount";
 import ProfileEdit from "../components/ProfileEdit";
 import Favorites from "../components/Favorites";
 import BaseLayout from "../pages/BaseLayout";
-import DetailPage from "../pages/DetailPage";
-import RegisterPage from "../pages/RegisterPage";
-
+// import DetailPage from "../pages/DetailPage";
 import StreamingPage from "../pages/StreamingPage";
 import OrderPage from "../pages/OrderPage/OrderPage";
 import CheckoutPage from "../pages/CheckoutPage/CheckoutPage";
+import DetailPage from "../pages/DetailPage/DetailPage";
+import RegisterPage from "../pages/RegisterPage";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: "/streaming",
         element: <StreamingPage />,
+      },
+      {
+        path: "/detail-page/:id",
+        element: <DetailPage />,
       },
       {
         path: "/account",

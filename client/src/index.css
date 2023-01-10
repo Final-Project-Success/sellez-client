@@ -81,3 +81,9 @@
     @apply transition-all duration-700 ease-in-out cursor-pointer;
   }
 }
+.detailspage {
+  background: url(./assets/bgblob.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
