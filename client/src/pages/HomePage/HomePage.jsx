@@ -4,6 +4,8 @@ import Hero from "../../components/Hero.jsx";
 import PopularSales from "../../components/PopularSales.jsx";
 import TopSales from "../../components/TopSales.jsx";
 import { useGetProductsQuery } from "../../features/apiSlice.js";
+import ChatPage from "../Chat-Web/ChatPage.js";
+
 export default function HomePage(params) {
   const { data, error, isLoading } = useGetProductsQuery();
   console.log(data, error, isLoading);
@@ -18,6 +20,7 @@ export default function HomePage(params) {
       {/* <TopRated /> */}
       <Cart />
       <main className="flex flex-col gap-16 relative">
+        <ChatPage />
         <Hero />
         <PopularSales />
         <FlexContent />

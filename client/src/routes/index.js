@@ -13,6 +13,7 @@ import StreamingPage from "../pages/StreamingPage";
 import OrderPage from "../pages/OrderPage/OrderPage";
 import CheckoutPage from "../pages/CheckoutPage/CheckoutPage";
 import DetailPage from "../pages/DetailPage/DetailPage";
+import RegisterPage from "../pages/RegisterPage";
 
 const router = createBrowserRouter([
   {
@@ -65,6 +66,31 @@ const router = createBrowserRouter([
         ],
       },
     ],
+  },
+  {
+    path: "/detail-page",
+    element: <DetailPage />,
+  },
+
+  {
+    path: "/login",
+    element: <LoginPage />,
+    loader: () => {
+      if (localStorage.access_token) return redirect("/");
+      else {
+        return null;
+      }
+    },
+  },
+  {
+    path: "/register",
+    element: <RegisterPage />,
+    loader: () => {
+      if (localStorage.access_token) return redirect("/");
+      else {
+        return null;
+      }
+    },
   },
 ]);
 
