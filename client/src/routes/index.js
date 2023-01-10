@@ -12,10 +12,8 @@ import BaseLayout from "../pages/BaseLayout";
 import StreamingPage from "../pages/StreamingPage";
 import OrderPage from "../pages/OrderPage/OrderPage";
 import CheckoutPage from "../pages/CheckoutPage/CheckoutPage";
-<<<<<<< HEAD
 import DetailPage from "../pages/DetailPage/DetailPage";
-=======
->>>>>>> 25f183904fff5f5b35fcbfab8459f1f8bf395c0a
+import RegisterPage from "../pages/RegisterPage";
 
 const router = createBrowserRouter([
   {
@@ -69,8 +67,6 @@ const router = createBrowserRouter([
       },
     ],
   },
-<<<<<<< HEAD
-=======
   {
     path: "/detail-page",
     element: <DetailPage />,
@@ -96,7 +92,6 @@ const router = createBrowserRouter([
       }
     },
   },
->>>>>>> 25f183904fff5f5b35fcbfab8459f1f8bf395c0a
 ]);
 
 export default router;
