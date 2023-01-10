@@ -49,7 +49,7 @@ export default function GridItems({
           <div className="flex items-center  w-28 my-2">
             <div className="flex items-center bg-white/80  px-1 rounded blur-effect-theme">
               <h1 className="text-black text-sm font-medium">
-                Rp.{rupiah(price)}
+                {rupiah(price)}
               </h1>
             </div>
             {/* <div className="flex items-center gap-1">
