@@ -2,6 +2,7 @@ import { useState } from "react";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 import { useGetProductByIdQuery } from "../../features/apiSlice";
 import { useParams } from "react-router-dom";
+import ScrollToBottom from "react-scroll-to-bottom";
 
 export default function LeftSide() {
   const [quantity, setQuantity] = useState(1);
@@ -19,8 +20,13 @@ export default function LeftSide() {
         </h1>
 
         {/* <!-- Description --> */}
+
         <div className="my-6 pr-4">
-          <p className="text-mainTextColor font-medium">{data?.description}</p>
+          <ScrollToBottom className="h-[250px]">
+            <p className="text-mainTextColor font-medium">
+              {data?.description}
+            </p>
+          </ScrollToBottom>
         </div>
 
         {/* <!-- Quantity Button --> */}

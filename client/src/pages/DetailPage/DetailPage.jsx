@@ -9,7 +9,7 @@ export default function DetailPage() {
 
       {/* Container Start */}
       <div
-        className="w-[90%] mx-auto flex justify-between p-16 bg-gradient-to-b from-gray-900 to-yellow-500 rounded-xl shadow-lg"
+        className="w-[90%] mx-auto flex justify-between p-16  rounded-xl shadow-lg"
         // style={{
         //   background: "rgba(255, 255, 255, 0.34)",
         //   borderRadius: "20px",
