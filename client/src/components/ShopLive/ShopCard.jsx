@@ -1,5 +1,11 @@
 export default function ({ item }) {
   const { title, img, price, color, shadow, text } = item;
+  const rupiah = (number) => {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+    }).format(number);
+  };
   return (
     <div>
       <div
@@ -13,7 +19,7 @@ export default function ({ item }) {
               className="w-36 h-auto object-fill lg:w-28"
             />
             <div className="absolute right-1 top-1 blur-theme-effect bg-white/80 text-black text-xs px-1 rounded">
-              ${price}
+              {rupiah(price)}
             </div>
           </div>
           <div className="grid items-center gap-4">
