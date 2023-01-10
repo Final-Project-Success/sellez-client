@@ -4,24 +4,26 @@ import {
   AiFillSetting,
 } from "react-icons/ai";
 import io from "socket.io-client";
-import axios from "axios";
 import { BsPeople } from "react-icons/bs";
-import { CgProfile, CgShapeCircle } from "react-icons/cg";
+import { CgShapeCircle } from "react-icons/cg";
 import { HiOutlineEmojiHappy } from "react-icons/hi";
 import { useState, useEffect } from "react";
 import ShopLive from "../components/ShopLive/ShopLive";
 import AgoraUIKit from "agora-react-uikit";
 import ScrollToBottom from "react-scroll-to-bottom";
-import { useChatsQuery, useAddChatMutation } from "../features/apiChat";
-const video =
-  "https://file-examples.com/storage/feefe3d0dd63b5a899e4775/2017/04/file_example_MP4_480_1_5MG.mp4";
+import { useChatsQuery } from "../features/apiChat";
+
 const socket = io.connect("http://localhost:3001");
 export default function StreamingPage() {
   const { data, error, isLoading } = useChatsQuery();
-  console.log(data, `<<<< data message useChattquery`);
   const [show, setShow] = useState(false);
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
+  
+  useEffect(()=>{
+    setMessageList(data)
+  },[data])
+  console.log(isLoading, data, error, `<<<< data message useChattquery`);
 
   const toggle = () => {
     setShow(!show);
@@ -38,20 +40,17 @@ export default function StreamingPage() {
           ":" +
           new Date(Date.now()).getMinutes(),
       };
+      // console.log(messageList, `<<<<<< data`);
       await socket.emit("send_message", messageData);
       // === for clear chat box ===
       setCurrentMessage("");
     }
   };
   useEffect(() => {
-    socket.on("receive_message", (data) => {
+    console.log(data, `<<< data receive message`);
+    socket.on("receive_message", (newMessage) => {
       // socket.emit("receive_message", data);
-      console.log(data, `<<< data receive message`);
-      setMessageList((message) => [...message, data]);
-      // const getMessage = async () =>{
-      //   const resp = await axios.get("http://localhost:10000/msg")
-      //   setMessageList(resp.data)
-      // }
+      setMessageList((message) => [...message, newMessage]);
     });
   }, [socket]);
   const [videoCallHost, setVideoCallHost] = useState(false);
@@ -83,15 +82,6 @@ export default function StreamingPage() {
           <div className="shadow-xl w-3/4">
             <div className="relative">
               <div height="600" className="relative w-full">
-                {/* <video height="600" controls className="relative w-full">
-                <source src={video} type="video/mp4" />
-              </video> */}
-                {/* <button onClick={() => setVideoCallAudience(true)}>
-                Start Call Audience
-              </button> */}
-                {/* <button onClick={() => setVideoCallHost(true)}>
-                Start Call Host
-              </button> agora-video-player-track-cam-fba86894 */}
                 {videoCallHost && (
                   <div
                     style={{ display: "flex", width: "100vw", height: "97vh" }}
@@ -134,33 +124,27 @@ export default function StreamingPage() {
               </button>
             </div>
           </div>
-
           {/* chat box */}
-     
-          <div className="h-[600px] w-[25%] bg-[#18181b] shadow-xl relative text-white border rounded-sm">
-          <ScrollToBottom className="h-[500px]"/>
+          <div className="h-[700px] w-[25%] bg-[#18181b] shadow-xl relative text-white border rounded-sm">
             <div className="flex justify-between py-3 px-4 border-b border-gray-300 shadow-md">
               <h2 className="text-lg font-medium">Stream Chat</h2>
               <BsPeople className="text-xl" />
             </div>
+            <ScrollToBottom className="h-[500px]">
+            {messageList?.map((el) => {
+                  return (
+                    <div className="flex items-center" key={el.id}>
+                      <h3 className="text-xl font-medium text-[#5c17c5] -mt-1">
+                        {el.user}:
+                      </h3>
+                      <span className="ml-2 font-normal text-white">
+                        {el.message}
+                      </span>
+                    </div>
+                  );
+                })}
+              </ScrollToBottom>
             <div className="absolute bottom-0 w-full">
-              <div className="flex flex-col gap-2 my-3 px-3">
-                
-                  <CgProfile className="mr-2 text-2xl" />
-                    {/* {data?.map((el) => {
-                      return (
-                        <div className="flex items-center" key={el.id}>
-                          <h3 className="text-xl font-medium text-[#5c17c5] -mt-1">
-                            {el.user}:
-                          </h3>
-                          <span className="ml-2 font-normal text-white">
-                            {el.message}
-                          </span>
-                        </div>
-                      );
-                    })}  */}
-              </div>
-
               <div className="relative px-3">
                 <input
                   className="py-2 pl-3 bg-[#3d3d40] placeholder-white w-full rounded-md"
@@ -194,7 +178,6 @@ export default function StreamingPage() {
               </div>
             </div>
           </div>
-          <ScrollToBottom/>
         </div>
       </section>
       <ShopLive drawer={show} toggle={toggle} />
