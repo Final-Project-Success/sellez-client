@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import axios from "axios";
 import {
   selectCartItems,
   selectCartState,
@@ -39,6 +40,27 @@ export default function Cart() {
       style: "currency",
       currency: "IDR",
     }).format(number);
+  };
+
+  let checkout = async () => {
+    try {
+      let baseURL = "http://localhost:4000/orders";
+      let ongkir = 10000;
+
+      let { data } = await axios({
+        url: baseURL,
+        method: "POST",
+        data: {
+          products: localStorage.cart,
+          shippingCost: ongkir,
+          totalPrice: totalAmount,
+        },
+        headers: { access_token: localStorage.access_token },
+      });
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -87,6 +109,7 @@ export default function Cart() {
                   </p>
                   <button
                     type="button"
+                    onClick={checkout}
                     className="button-theme bg-theme-cart text-white"
                   >
                     Check Out
