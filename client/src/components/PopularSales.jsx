@@ -2,6 +2,7 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/css";
 import psale2 from "../assets/product2.png";
 import CarouselItems from "./CarouselItems.jsx";
+const { useGetProductsQuery } = require("../features/apiSlice.js");
 export default function PopularSales() {
   const popularsales = {
     title: "Popular Sales",
@@ -96,6 +97,7 @@ export default function PopularSales() {
       },
     ],
   };
+  const { data: products, error, isLoading } = useGetProductsQuery();
   const splideOptions = {
     perPage: 3,
     perMove: 1,
@@ -123,13 +125,17 @@ export default function PopularSales() {
             Popular
           </h1>
         </div>
-        <Splide options={splideOptions}>
-          {popularsales.items?.map((item, i) => (
-            <SplideSlide key={i} className="pt-7 pb-14">
-              <CarouselItems {...item} />
-            </SplideSlide>
-          ))}
-        </Splide>
+        {!products ? (
+          ""
+        ) : (
+          <Splide options={splideOptions}>
+            {products?.map((item, i) => (
+              <SplideSlide key={i} className="pt-7 pb-14">
+                <CarouselItems {...item} />
+              </SplideSlide>
+            ))}
+          </Splide>
+        )}
       </div>
     </>
   );
