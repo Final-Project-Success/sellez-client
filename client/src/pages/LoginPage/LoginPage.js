@@ -37,7 +37,6 @@ export default function LoginPage() {
       localStorage.setItem("role", result.data.role);
       localStorage.setItem("username", result.data.username);
       navigate("/");
-
       setInput({
         username: "",
         email: "",
