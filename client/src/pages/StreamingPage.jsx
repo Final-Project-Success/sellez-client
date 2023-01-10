@@ -46,7 +46,6 @@ export default function StreamingPage() {
 
   useEffect(() => {
     socket.on("receive_message", (data) => {
-      console.log(data, `<<< data receive message`);
       setMessageList((message) => [...message, data]);
     });
   }, [socket]);
