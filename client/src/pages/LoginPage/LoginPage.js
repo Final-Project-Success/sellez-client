@@ -29,6 +29,7 @@ export default function LoginPage() {
       email: res.email,
       profilePict: res.photoURL,
     });
+    console.log(oauthInput, `<<<<<<< oauth `);
   };
 
   useEffect(() => {

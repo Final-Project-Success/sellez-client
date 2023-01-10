@@ -1,20 +1,24 @@
 import React, { useEffect, useState } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
 
-export default function Chat({ socket, username, room}) {
+export default function Chat({ socket, username}) {
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
-  // const [room, setRoom] = useState("");
+  const [room, setRoom] = useState("");
 
-  // const roomNumb = () =>{
-  //   socket.emit("join_room", room)
-  // }
+  const roomjoin = () =>{
+    setRoom({
+      ...room,
+      room: `room-${localStorage.email}`
+  })
+    socket.emit("join_room")
+  }
 
   const sendMessage = async () => {
     if (currentMessage !== "") {
       const messageData = {
-        room: room,
-        user: username,
+        // room: room,
+        user: localStorage.username,
         message: currentMessage,
         time:
           new Date(Date.now()).getHours() +
