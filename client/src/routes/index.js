@@ -8,12 +8,14 @@ import ManageAccount from "../components/MangeAccount";
 import ProfileEdit from "../components/ProfileEdit";
 import Favorites from "../components/Favorites";
 import BaseLayout from "../pages/BaseLayout";
-import DetailPage from "../pages/DetailPage";
-import RegisterPage from "../pages/RegisterPage";
-
+// import DetailPage from "../pages/DetailPage";
 import StreamingPage from "../pages/StreamingPage";
 import OrderPage from "../pages/OrderPage/OrderPage";
 import CheckoutPage from "../pages/CheckoutPage/CheckoutPage";
+<<<<<<< HEAD
+import DetailPage from "../pages/DetailPage/DetailPage";
+=======
+>>>>>>> 25f183904fff5f5b35fcbfab8459f1f8bf395c0a
 
 const router = createBrowserRouter([
   {
@@ -44,6 +46,10 @@ const router = createBrowserRouter([
         element: <StreamingPage />,
       },
       {
+        path: "/detail-page/:id",
+        element: <DetailPage />,
+      },
+      {
         path: "/account",
         element: <AccountPage />,
         children: [
@@ -63,6 +69,8 @@ const router = createBrowserRouter([
       },
     ],
   },
+<<<<<<< HEAD
+=======
   {
     path: "/detail-page",
     element: <DetailPage />,
@@ -88,6 +96,7 @@ const router = createBrowserRouter([
       }
     },
   },
+>>>>>>> 25f183904fff5f5b35fcbfab8459f1f8bf395c0a
 ]);
 
 export default router;
