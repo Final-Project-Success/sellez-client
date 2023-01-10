@@ -33,26 +33,36 @@ export function deleteProduct(id) {
   };
 }
 
-export function createProduct(input) {
+export function createProduct(input, image) {
   return async (dispatch) => {
     try {
-      const form = new FormData()
-      input.imgUrl.forEach(element => {
-        form.append('imgUrl', element)
-      });
-      const { data } = await axios ({
-        method: 'POST',
+
+      const form = new FormData();
+
+      form.append("name", input.name);
+      form.append("price", input.price);
+      form.append("stock", input.stock);
+      form.append("color", input.color);
+      form.append("CategoryId", input.CategoryId);
+
+      form.append("description", input.description);
+      // form.append("imgUrl",image.image)
+       for(let x = 0; x <image.image.length; x++) {
+       form.append('imgUrl', image.image[x])
+      }
+
+      const { data } = await axios({
+        method: "POST",
         url: `${baseUrl}/products`,
         data: form,
         headers: {
-          "Content-Type": "multipart/form-data"
-        }
-
-      })  
-      console.log(input.imgUrl);
+          "Content-Type": "multipart/form-data",
+        },
+      });
+  
       dispatch(fetchProducts());
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 }

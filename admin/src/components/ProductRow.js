@@ -6,7 +6,14 @@ import Swal from 'sweetalert2'
 
 export default function ProductRow({product, i}) {
   const dispatch = useDispatch()
-  
+
+  const rupiah = (number)=>{
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR"
+    }).format(number);
+  }
+
   const onDelete = (id) => {
     console.log('masuk ondelete');
     Swal.fire({
@@ -30,19 +37,17 @@ export default function ProductRow({product, i}) {
                     <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700">
                       {product.name}
                     </th>
-                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {product.price}
+                    <td className="border-t-0 px-6 align-middle font-bold border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      {rupiah(product.price)}
                      
                     </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                      <img src={product.imgUrl} style={{width: 150}} alt={product.name} />
                     </td>
-                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      20
+                    <td className="border-t-0 px-6 font-bold align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      {product.stock}
                     </td>
-                       <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                     {product.color}
-                    </td>
+                       
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
                     
                     onClick={() => {
