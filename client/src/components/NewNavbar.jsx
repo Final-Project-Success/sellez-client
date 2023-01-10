@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import logo from "../public/img/logo png.png";
-import { FiSearch } from "react-icons/fi";
 import { BiShoppingBag, BiLogIn, BiLogOut } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import { selectTotalQTY, setOpenCart } from "../features/CartSlice.js";
@@ -31,10 +30,6 @@ export default function NewNavbar() {
       setNavState(false);
     }
   };
-  // const goToStreamingPge = () => {
-
-  //   window.location.href = "/streaming";
-  // };
   useEffect(() => {
     window.addEventListener("scroll", onNavScroll);
     if (!localStorage.access_token) {
@@ -42,9 +37,6 @@ export default function NewNavbar() {
     } else {
       setIsLogin(true);
     }
-    // return () => {
-    //   window.removeEventListener("scroll", onNavScroll);
-    // };
   }, []);
   return (
     <>
@@ -66,13 +58,6 @@ export default function NewNavbar() {
             </Link>
           </div>
           <ul className="flex items-center justify-center gap-2">
-            {/* <li className="grid items-center">
-              <FiSearch
-                className={`icon-style ${
-                  navState && "text-slate-900 transition-all duration-300"
-                }`}
-              />
-            </li> */}
             {isLogin && (
               <li className="grid items-center">
                 <button

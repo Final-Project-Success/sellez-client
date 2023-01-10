@@ -9,12 +9,6 @@ import { HiOutlineChevronDoubleDown } from "react-icons/hi";
 export default function Chat({ socket, username, room, toggle }) {
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
-  // const [room, setRoom] = useState("");
-
-  // const roomNumb = () =>{
-  //   socket.emit("join_room", room)
-  // }
-  console.log(username, "<<<");
 
   const sendMessage = async () => {
     if (currentMessage !== "") {

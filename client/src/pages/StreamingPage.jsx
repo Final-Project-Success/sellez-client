@@ -23,7 +23,6 @@ export default function StreamingPage() {
   useEffect(() => {
     setMessageList(data);
   }, [data]);
-  console.log(isLoading, data, error, `<<<< data message useChattquery`);
 
   const toggle = () => {
     setShow(!show);
@@ -31,7 +30,6 @@ export default function StreamingPage() {
 
   // for message
   const sendMessage = async () => {
-    console.log(`send mesage`);
     if (currentMessage !== "") {
       const messageData = {
         user: localStorage.username,
@@ -41,7 +39,6 @@ export default function StreamingPage() {
           ":" +
           new Date(Date.now()).getMinutes(),
       };
-      // console.log(messageList, `<<<<<< data`);
       await socket.emit("send_message", messageData);
       // === for clear chat box ===
       setCurrentMessage("");
@@ -52,7 +49,7 @@ export default function StreamingPage() {
     socket.on("receive_message", (newMessage) => {
       setMessageList((message) => [...message, newMessage]);
     });
-  }, [socket]);
+  }, []);
 
   const [videoCall, setVideoCall] = useState(false);
   const rtcProps = {
