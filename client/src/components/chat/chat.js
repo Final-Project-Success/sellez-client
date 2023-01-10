@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
 
-export default function Chat({ socket, username, room }) {
+export default function Chat({ socket, username, room}) {
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
-  // for message
+  // const [room, setRoom] = useState("");
+
+  // const roomNumb = () =>{
+  //   socket.emit("join_room", room)
+  // }
+
   const sendMessage = async () => {
     if (currentMessage !== "") {
       const messageData = {
-        // room: room,
+        room: room,
         user: username,
         message: currentMessage,
         time:
@@ -17,23 +22,23 @@ export default function Chat({ socket, username, room }) {
           new Date(Date.now()).getMinutes(),
       };
 
-      await socket.emit("send_message", messageData);
-      // setMessageList((message) => [...message, messageData]);
-      // === for clear chat box ===
+      await socket.emit("send_msgprivate", messageData);
+      setMessageList((list) => [...list, messageData]);
+      // for clear
       setCurrentMessage("");
     }
   };
+
   useEffect(() => {
-    socket.on("receive_message", (data) => {
-      // socket.emit("receive_message", data);
-      console.log(data, `<<< data receive message`);
-      setMessageList((message) => [...message, data]);
+    socket.on("receive_msgprivate", (data) => {
+      setMessageList((list) => [...list, data]);
     });
   }, [socket]);
+
   return (
     <div className="chat-window">
       <div className="chat-header">
-        <p>Chat</p>
+        <p>Live Chat</p>
       </div>
       <div className="chat-body">
         <ScrollToBottom className="message-container">
@@ -43,10 +48,8 @@ export default function Chat({ socket, username, room }) {
                 className="message"
                 id={username === el.user ? "you" : "other"}
               >
-                <div key={el.id}>
-                  <div className="message-meta">
-                    <p id="author">{el.user}</p>
-                  </div>
+                <div>
+                <p id="author">{el.user}</p>
                   <div className="message-content">
                     <p>{el.message}</p>
                   </div>
