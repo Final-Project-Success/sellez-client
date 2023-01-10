@@ -53,6 +53,12 @@ export default function CartItem({
       })
     );
   };
+  const rupiah = (number) => {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+    }).format(number);
+  };
   return (
     <>
       <div className="flex items-center justify-between w-full px-5">
@@ -66,7 +72,7 @@ export default function CartItem({
               className="w-36 h-auto object-fill lg:w-28"
             />
             <div className="absolute right-1 top-1 blur-theme-effect bg-white/80 text-black text-xs px-1 rounded">
-              Rp.{price}
+              {rupiah(price)}
             </div>
           </div>
           <div className="grid items-center gap-4">
@@ -100,7 +106,7 @@ export default function CartItem({
         <div className="grid items-center gap-5">
           <div className="grid items-center justify-center">
             <h1 className="text-lg lg:text-base text-slate-900 font-medium">
-              Rp. {price * cartQuantity}
+              {rupiah(price * cartQuantity)}
             </h1>
           </div>
           <div className="grid items-center justify-center">

@@ -34,6 +34,13 @@ export default function Cart() {
   const onClearCartItems = () => {
     dispatch(setClearCartItems());
   };
+  const rupiah = (number) => {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+    }).format(number);
+  };
+
   return (
     <>
       <div
@@ -71,7 +78,7 @@ export default function Cart() {
                     SubTotal
                   </h1>
                   <h1 className="text-sm rounded bg-theme-cart text-slate-100 px-1 py-0.5">
-                    ${totalAmount}
+                    {rupiah(totalAmount)}
                   </h1>
                 </div>
                 <div className="grid items-center gap-2">
