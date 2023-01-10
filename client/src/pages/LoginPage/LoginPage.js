@@ -1,46 +1,80 @@
 import { facebookProvider } from "../../config/auth-sosmed";
 import { googleProvider } from "../../config/auth-sosmed";
 import socialMediaAuth from "../../sevices/auth";
-import { useState } from "react";
-import { useDispatch } from 'react-redux'
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import logo from '../images/sellez-logoo.jpg'
-import { Link } from 'react-router-dom'
-import { login } from "../../stores/actions/user";
+import logo from "../images/sellez-logoo.jpg";
+import { Link } from "react-router-dom";
+import {
+  useLoginMutation,
+  useOauthLoginMutation,
+} from "../../features/apiUser";
 
-export default function LoginPage(params) {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+export default function LoginPage() {
+  const navigate = useNavigate();
+  const [login] = useLoginMutation();
+  const [oauth] = useOauthLoginMutation();
+
+  const [oauthInput, setOauthInput] = useState({
+    username: "",
+    email: "",
+    profilePict: "",
+  });
 
   const handleLogin = async (provider) => {
     const res = await socialMediaAuth(provider);
-    navigate('/')
-    console.log(res);
+
+    setOauthInput({
+      username: res.displayName,
+      email: res.email,
+      profilePict: res.photoURL,
+    });
   };
-  
+
+  useEffect(() => {
+    oauth(oauthInput).then((result) => {
+      localStorage.setItem("access_token", result.data.access_token);
+      localStorage.setItem("role", result.data.role);
+      localStorage.setItem("email", result.data.email);
+      localStorage.setItem("username", result.data.username);
+      navigate("/");
+      setInput({
+        username: "",
+        email: "",
+        profilePict: "",
+      });
+    });
+  }, [oauthInput]);
+
   const [input, setInput] = useState({
     email: "",
     password: "",
   });
 
   const handleChange = (e) => {
-    const value = e.target.value
-    const name = e.target.name
-    setInput ({
+    const value = e.target.value;
+    const name = e.target.name;
+    setInput({
       ...input,
-      [name]: value
-    })
-  }
+      [name]: value,
+    });
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(login(input))
-    .then((result) => {
-      if(result) {
-        localStorage.setItem('access_token', result.access_token)
-         navigate('/')
+    login(input).then((result) => {
+      if (result.data) {
+        localStorage.setItem("email", result.data.email);
+        localStorage.setItem("access_token", result.data.access_token);
+        localStorage.setItem("role", result.data.role);
+        localStorage.setItem("username", result.data.username);
+        navigate("/");
+        setInput({
+          email: "",
+          password: "",
+        });
       }
-    })
+    });
   };
 
   return (
@@ -49,11 +83,7 @@ export default function LoginPage(params) {
         <div class="px-6 h-full text-gray-800">
           <div class="flex xl:justify-center lg:justify-between justify-center items-center flex-wrap h-full g-6">
             <div class="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 mb-12 md:mb-0">
-              <img
-                src={logo}
-                style={{width: 700}}
-                alt="Sample image"
-              />
+              <img src={logo} style={{ width: 700 }} alt="Sample image" />
             </div>
             <div class="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
               <form onSubmit={handleSubmit}>
@@ -102,8 +132,6 @@ export default function LoginPage(params) {
                       ></path>{" "}
                     </svg>
                   </button>
-
-                 
                 </div>
 
                 <div class="flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5">
@@ -135,22 +163,25 @@ export default function LoginPage(params) {
                 </div>
 
                 <div class="flex justify-between items-center mb-6">
-            
-            <a href="#!" class="text-gray-800">Forgot password?</a>
-          </div>
+                  <a href="#!" class="text-gray-800">
+                    Forgot password?
+                  </a>
+                </div>
 
                 <div class="text-center lg:text-left">
                   <button
-                    type="button"
+                    type="submit"
                     class="inline-block px-7 py-3 bg-yellow-300 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-200 ease-in-out"
                   >
                     Login
                   </button>
                   <p class="text-sm font-semibold mt-2 pt-1 mb-0">
                     Don't have an account?
-                  
-                    <Link to={'/register'} class="text-red-600 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out">
-                    Register
+                    <Link
+                      to={"/register"}
+                      class="text-red-600 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out"
+                    >
+                      Register
                     </Link>
                   </p>
                 </div>

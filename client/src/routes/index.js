@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, redirect } from "react-router-dom";
 import ChatPage from "../pages/Chat-Web/ChatPage";
 import HomePage from "../pages/HomePage/HomePage";
 import LoginPage from "../pages/LoginPage/LoginPage";
@@ -8,13 +8,12 @@ import ManageAccount from "../components/MangeAccount";
 import ProfileEdit from "../components/ProfileEdit";
 import Favorites from "../components/Favorites";
 import BaseLayout from "../pages/BaseLayout";
-import DetailPage from "../pages/DetailPage";
-import RegisterPage from "../pages/RegisterPage";
-
+// import DetailPage from "../pages/DetailPage";
 import StreamingPage from "../pages/StreamingPage";
 import OrderPage from "../pages/OrderPage/OrderPage";
 import CheckoutPage from "../pages/CheckoutPage/CheckoutPage";
-
+import DetailPage from "../pages/DetailPage/DetailPage";
+import RegisterPage from "../pages/RegisterPage";
 
 const router = createBrowserRouter([
   {
@@ -38,11 +37,15 @@ const router = createBrowserRouter([
       },
       {
         path: "/checkout",
-        element: <CheckoutPage/>,
+        element: <CheckoutPage />,
       },
       {
         path: "/streaming",
         element: <StreamingPage />,
+      },
+      {
+        path: "/detail-page/:id",
+        element: <DetailPage />,
       },
       {
         path: "/account",
@@ -72,11 +75,23 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <LoginPage />,
+    loader: () => {
+      if (localStorage.access_token) return redirect("/");
+      else {
+        return null;
+      }
+    },
   },
   {
-    path: '/register',
-    element: <RegisterPage />
-  }
+    path: "/register",
+    element: <RegisterPage />,
+    loader: () => {
+      if (localStorage.access_token) return redirect("/");
+      else {
+        return null;
+      }
+    },
+  },
 ]);
 
 export default router;
