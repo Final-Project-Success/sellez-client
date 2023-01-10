@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, redirect } from "react-router-dom";
 import ChatPage from "../pages/Chat-Web/ChatPage";
 import HomePage from "../pages/HomePage/HomePage";
 import LoginPage from "../pages/LoginPage/LoginPage";
@@ -12,7 +12,10 @@ import BaseLayout from "../pages/BaseLayout";
 import StreamingPage from "../pages/StreamingPage";
 import OrderPage from "../pages/OrderPage/OrderPage";
 import CheckoutPage from "../pages/CheckoutPage/CheckoutPage";
+<<<<<<< HEAD
 import DetailPage from "../pages/DetailPage/DetailPage";
+=======
+>>>>>>> 25f183904fff5f5b35fcbfab8459f1f8bf395c0a
 
 const router = createBrowserRouter([
   {
@@ -66,6 +69,34 @@ const router = createBrowserRouter([
       },
     ],
   },
+<<<<<<< HEAD
+=======
+  {
+    path: "/detail-page",
+    element: <DetailPage />,
+  },
+
+  {
+    path: "/login",
+    element: <LoginPage />,
+    loader: () => {
+      if (localStorage.access_token) return redirect("/");
+      else {
+        return null;
+      }
+    },
+  },
+  {
+    path: "/register",
+    element: <RegisterPage />,
+    loader: () => {
+      if (localStorage.access_token) return redirect("/");
+      else {
+        return null;
+      }
+    },
+  },
+>>>>>>> 25f183904fff5f5b35fcbfab8459f1f8bf395c0a
 ]);
 
 export default router;
