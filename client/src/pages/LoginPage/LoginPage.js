@@ -1,7 +1,7 @@
 import { facebookProvider } from "../../config/auth-sosmed";
 import { googleProvider } from "../../config/auth-sosmed";
 import socialMediaAuth from "../../sevices/auth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../images/sellez-logoo.jpg";
 import { Link } from "react-router-dom";
@@ -23,27 +23,28 @@ export default function LoginPage() {
 
   const handleLogin = async (provider) => {
     const res = await socialMediaAuth(provider);
-    console.log(res);
 
-    if (res) {
-      setOauthInput({
-        username: res.displayName,
-        email: res.email,
-        profilePict: res.photoURL,
-      });
-      console.log(oauthInput);
-
-      oauth(oauthInput).then((result) => {
-        // console.log(result);
-        // if (result) {
-        // localStorage.setItem("access_token", result.data.access_token);
-        // localStorage.setItem("role", result.data.role);
-        // localStorage.setItem("username", result.data.username);
-        // navigate("/");
-        // }
-      });
-    }
+    setOauthInput({
+      username: res.displayName,
+      email: res.email,
+      profilePict: res.photoURL,
+    });
   };
+
+  useEffect(() => {
+    oauth(oauthInput).then((result) => {
+      localStorage.setItem("access_token", result.data.access_token);
+      localStorage.setItem("role", result.data.role);
+      localStorage.setItem("username", result.data.username);
+      navigate("/");
+
+      setInput({
+        username: "",
+        email: "",
+        profilePict: "",
+      });
+    });
+  }, [oauthInput]);
 
   const [input, setInput] = useState({
     email: "",
@@ -57,7 +58,6 @@ export default function LoginPage() {
       ...input,
       [name]: value,
     });
-    console.log(input);
   };
 
   const handleSubmit = (event) => {
