@@ -9,7 +9,12 @@ import { HiOutlineChevronDoubleDown } from "react-icons/hi";
 export default function Chat({ socket, username, room, toggle }) {
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
-  // for message
+  // const [room, setRoom] = useState("");
+
+  // const roomNumb = () =>{
+  //   socket.emit("join_room", room)
+  // }
+
   const sendMessage = async () => {
     if (currentMessage !== "") {
       const messageData = {
@@ -28,13 +33,13 @@ export default function Chat({ socket, username, room, toggle }) {
       setCurrentMessage("");
     }
   };
+
   useEffect(() => {
-    socket.on("receive_message", (data) => {
-      // socket.emit("receive_message", data);
-      console.log(data, `<<< data receive message`);
-      setMessageList((message) => [...message, data]);
+    socket.on("receive_msgprivate", (data) => {
+      setMessageList((list) => [...list, data]);
     });
   }, [socket]);
+
   return (
     <div className="h-full w-full flex flex-col justify-between">
       {/* chat top */}

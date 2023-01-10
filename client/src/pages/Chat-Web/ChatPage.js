@@ -11,7 +11,7 @@ export default function ChatPage() {
   const [openChat, setOpenChat] = useState(true);
   const joinRoom = () => {
     if (username !== "") {
-      // socket.emit("join_room", room);
+      socket.emit("join_room", room);
       // for show the chat
       setShowChat(true);
     }

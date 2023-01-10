@@ -14,8 +14,11 @@ export default function NewProductForm() {
     price: "",
     stock: "",
     description: "",
-    imgUrl: [],
+    color: "",
+    CategoryId: 0
   });
+
+  const [image, setImage] = useState(null);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -23,7 +26,6 @@ export default function NewProductForm() {
   const handleChange = (event) => {
     const value = event.target.value;
     const name = event.target.name;
-    
 
     setInput({
       ...input,
@@ -31,18 +33,20 @@ export default function NewProductForm() {
     });
   };
 
+
+
   const handleChangeFile = (e) => {
-    console.log(e.target.files);
-    setInput({
-      ...input,
-      imgUrl: [ ...input.imgUrl, e.target.files]
-    })
-  }
+  
+    setImage({
+      image: e.target.files,
+    });
+  };
+ 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createProduct(input));
-    console.log(input);
+    dispatch(createProduct(input, image));
+  
     Swal.fire("Good job!", `${input.name} successfully added`, "success");
 
     navigate("/");
@@ -69,11 +73,11 @@ export default function NewProductForm() {
         </div>
         <form
           onSubmit={handleSubmit}
-          encType='multipart/form-data'
+          encType="multipart/form-data"
           className="space-y-6 ng-untouched ng-pristine ng-valid"
         >
           <div>
-            <label htmlFor="name" className="text-sm">
+            <label htmlFor="name" className="text-sm font-bold">
               Product Name
             </label>
             <input
@@ -83,16 +87,17 @@ export default function NewProductForm() {
               onChange={handleChange}
               value={input.name}
               name="name"
-              className="w-full p-3 rounded dark:bg-gray-800"
+              className="w-full  p-3 rounded dark:bg-gray-800"
             />
           </div>
           <div>
-            <label htmlFor="price" className="text-sm">
+            <label htmlFor="price" className="text-sm font-bold">
               Price
             </label>
             <input
               id="price"
               type="number"
+              placeholder="price"
               onChange={handleChange}
               value={input.price}
               name="price"
@@ -100,7 +105,7 @@ export default function NewProductForm() {
             />
           </div>
           <div>
-            <label htmlFor="stock" className="text-sm">
+            <label htmlFor="stock" className="text-sm font-bold">
               Stock Available
             </label>
             <input
@@ -108,25 +113,55 @@ export default function NewProductForm() {
               type="number"
               onChange={handleChange}
               value={input.stock}
+              placeholder="Stock"
               name="stock"
               className="w-full p-3 rounded dark:bg-gray-800"
             />
           </div>
           <div>
-            <label htmlFor="message" className="text-sm">
+            <label htmlFor="message" className="text-sm font-bold">
               Description
             </label>
             <textarea
               id="message"
               rows="3"
               onChange={handleChange}
+              placeholder="description"
               value={input.description}
               name="description"
               className="w-full p-3 rounded dark:bg-gray-800"
             ></textarea>
           </div>
 
-          <div className="grid grid-cols-2">
+          <div>
+            <label htmlFor="message" className="text-sm font-bold">
+              Color
+            </label>
+            <textarea
+              id="message"
+              rows="3"
+              onChange={handleChange}
+              value={input.color}
+              name="color"
+              className="w-full p-3 rounded dark:bg-gray-800"
+            ></textarea>
+          </div>
+
+          <div>
+            <label htmlFor="message" className="text-sm font-bold">
+              CategoryId
+            </label>
+            <textarea
+              id="message"
+              rows="3"
+              onChange={handleChange}
+              value={input.CategoryId}
+              name="CategoryId"
+              className="w-full p-3 rounded dark:bg-gray-800"
+            ></textarea>
+          </div>
+
+          <div className="">
             <label
               className="block mb-6 text-sm font-medium text-gray-900 dark:text-white"
               htmlFor="file_input"
@@ -142,8 +177,6 @@ export default function NewProductForm() {
               onChange={handleChangeFile}
               multiple
             />
-
-           
           </div>
 
           <button

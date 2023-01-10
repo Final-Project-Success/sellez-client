@@ -35,9 +35,9 @@ export default function LoginPage() {
     oauth(oauthInput).then((result) => {
       localStorage.setItem("access_token", result.data.access_token);
       localStorage.setItem("role", result.data.role);
+      localStorage.setItem("email", result.data.email);
       localStorage.setItem("username", result.data.username);
       navigate("/");
-
       setInput({
         username: "",
         email: "",
@@ -64,6 +64,7 @@ export default function LoginPage() {
     event.preventDefault();
     login(input).then((result) => {
       if (result.data) {
+        localStorage.setItem("email", result.data.email);
         localStorage.setItem("access_token", result.data.access_token);
         localStorage.setItem("role", result.data.role);
         localStorage.setItem("username", result.data.username);
