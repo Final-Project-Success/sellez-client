@@ -1,5 +1,7 @@
 import axios from "axios";
+import setLoading from "./loading";
 let baseUrl = "http://localhost:4000";
+
 
 export function fetchProducts() {
   return async (dispatch) => {
@@ -11,6 +13,8 @@ export function fetchProducts() {
       dispatch({ type: "products/fetchAll", payload: data });
     } catch (error) {
       console.log(error);
+    }finally {
+      dispatch(setLoading(false))
     }
   };
 }
@@ -61,6 +65,8 @@ export function createProduct(input, image) {
       dispatch(fetchProducts());
     } catch (error) {
       console.log(error);
+    }finally {
+      dispatch(setLoading(false))
     }
   };
 }

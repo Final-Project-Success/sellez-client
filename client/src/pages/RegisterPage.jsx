@@ -27,6 +27,14 @@ export default function RegisterPage() {
     console.log(input);
   };
 
+  const handleChangeFile = (e) => {
+    console.log(e.target.files[0]);
+    setInput({
+      ...input,
+      profilePict: [input.profilePict, e.target.files[0]]
+    })
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
     register(input).then((result) => {
@@ -55,7 +63,9 @@ export default function RegisterPage() {
             <div class="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
               <p class="text-lg mb-10 mr-4 font-bold">Create new account!</p>
 
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit}
+                 encType='multipart/form-data'
+              >
                 <div class="mb-6">
                   <input
                     type="text"
@@ -115,6 +125,8 @@ export default function RegisterPage() {
                   aria-describedby="file_input_help"
                   id="file_input"
                   type="file"
+                  onChange={handleChangeFile}
+                  enctype
                 />
 
                 <div class="mb-6 mt-6">

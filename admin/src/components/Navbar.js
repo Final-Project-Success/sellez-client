@@ -10,17 +10,16 @@ export default function Navbar() {
           <div className="container mx-auto px-4">
             <div className="flex items-center justify-between py-4">
               <div>
-                <img src={foto} alt='sellez-logo' style={{width: 80}} />
-              </div>
-
+                <img src={foto} alt='sellez-logo' style={{width: 90}} />
+              </div> 
               <div className="hidden sm:flex sm:items-center">
               
-                <Link to='/'  className="text-blue-500 text-sm font-bold hover:text-yellow-400 mr-10 ease-linear transition-all duration-200">
+                <Link to='/'  className="text-blue-500  hover:text-yellow-400 mr-20 ease-linear transition-all duration-200">
                Products
 
                     </Link>
                
-                  <Link to='/orders'  className="text-blue-500 text-sm font-bold hover:text-yellow-400 ease-linear transition-all duration-200">
+                  <Link to='/orders'  className="text-blue-500  hover:text-yellow-400 mr-20 ease-linear transition-all duration-200">
                 Orders
 
                     </Link>
