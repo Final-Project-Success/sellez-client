@@ -49,7 +49,7 @@ export default function StreamingPage() {
 
   const [videoCall, setVideoCall] = useState(false);
   const rtcProps = {
-    appId: "8f469a0aac0144a4a17b2dc003d51e43",
+    appId: "8f469a0aac014aa4a17b2dc003d51e43",
     channel: "channel", // your agora channel,
     role: localStorage.role === "admin" ? "host" : "audience",
     token:
@@ -67,7 +67,13 @@ export default function StreamingPage() {
               <div height="600" className="relative w-full">
                 {videoCall && (
                   <div
-                    style={{ display: "flex", width: "100vw", height: "97vh" }}
+                    // height="600"
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      width: "full",
+                      height: "600px",
+                    }}
                   >
                     <AgoraUIKit rtcProps={rtcProps} callbacks={callbacks} />
                   </div>
@@ -120,7 +126,7 @@ export default function StreamingPage() {
               {messageList?.map((el) => {
                 return (
                   <div className="flex items-center" key={el.id}>
-                    <h3 className="text-xl font-medium text-[#5c17c5] -mt-1">
+                    <h3 className="text-xl font-medium text-[#white] -mt-1">
                       {el.user}:
                     </h3>
                     <span className="ml-2 font-normal text-white">
