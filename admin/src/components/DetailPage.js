@@ -17,9 +17,6 @@ export default function DetailPage({ order }) {
           <h1 class="text-3xl dark:text-white lg:text-4xl font-semibold leading-7 lg:leading-9 text-gray-800">
             Order {order.id}
           </h1>
-          <p class="text-base dark:text-gray-300 font-medium leading-6 text-gray-600">
-            21st Mart 2021 at 10:34 PM
-          </p>
         </div>
       </div>
 

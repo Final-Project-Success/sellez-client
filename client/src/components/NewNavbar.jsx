@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectTotalQTY, setOpenCart } from "../features/CartSlice.js";
 import { RiLiveLine } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 export default function NewNavbar() {
   const [navState, setNavState] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
@@ -19,9 +20,22 @@ export default function NewNavbar() {
     );
   };
   const handleLogout = () => {
-    localStorage.clear();
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Logout",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.clear();
     setIsLogin(false);
     navigate("/");
+        Swal.fire("Logged out!");
+      }
+    });
+   
   };
   const onNavScroll = () => {
     if (window.scrollY > 30) {
