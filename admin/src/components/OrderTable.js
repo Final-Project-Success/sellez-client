@@ -1,15 +1,24 @@
   import { useDispatch, useSelector } from 'react-redux';
-import {useEffect} from 'react'
+  import {useEffect} from 'react'
+  import Loading from "./Loading"
 import OrderRow from './OrderRow';
 import { fetchOrders } from '../stores/actions/order';
 
+
 export default function OrderTable() {
     const orders = useSelector((state) => state.orderReducer.orders)
+    const loading = useSelector((state) => state.loadingReducer.loading)
     const dispatch = useDispatch()
   
     useEffect(() => {
       dispatch(fetchOrders())
     })
+
+    if(loading) {
+      return(
+        <Loading />
+      )
+    }
   
       return (
           <>
@@ -31,11 +40,20 @@ export default function OrderTable() {
                 <table class="items-center bg-transparent w-full border-collapse ">
                   <thead>
                     <tr>
+                    <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                        Order No.
+                      </th>
                       <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                         Order Date
                       </th>
                       <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                        Order Time
+                      </th>
+                      <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                         Total Price
+                      </th>
+                        <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                        Order Id
                       </th>
                  
                     </tr>

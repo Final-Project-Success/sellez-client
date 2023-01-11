@@ -1,4 +1,5 @@
 import axios from "axios";
+import setLoading from "./loading";
 let baseUrl = "http://localhost:4000";
 
 export function fetchOrders() {
@@ -14,6 +15,8 @@ export function fetchOrders() {
         dispatch({ type: "orders/fetchAll", payload: data });
       } catch (error) {
         console.log(error);
+      }finally {
+        dispatch(setLoading(false))
       }
     };
   }
