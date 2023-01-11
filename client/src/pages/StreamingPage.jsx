@@ -19,10 +19,10 @@ export default function StreamingPage() {
   const [show, setShow] = useState(false);
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
-  
-  useEffect(()=>{
-    setMessageList(data)
-  },[data])
+
+  useEffect(() => {
+    setMessageList(data);
+  }, [data]);
   console.log(isLoading, data, error, `<<<< data message useChattquery`);
 
   const toggle = () => {
@@ -34,7 +34,7 @@ export default function StreamingPage() {
     console.log(`send mesage`);
     if (currentMessage !== "") {
       const messageData = {
-        user: "ayam",
+        user: localStorage.username,
         message: currentMessage,
         time:
           new Date(Date.now()).getHours() +
@@ -49,9 +49,7 @@ export default function StreamingPage() {
   };
 
   useEffect(() => {
-    console.log(data, `<<< data receive message`);
     socket.on("receive_message", (newMessage) => {
-      // socket.emit("receive_message", data);
       setMessageList((message) => [...message, newMessage]);
     });
   }, [socket]);
@@ -120,19 +118,19 @@ export default function StreamingPage() {
               <BsPeople className="text-xl" />
             </div>
             <ScrollToBottom className="h-[500px]">
-            {messageList?.map((el) => {
-                  return (
-                    <div className="flex items-center" key={el.id}>
-                      <h3 className="text-xl font-medium text-[#5c17c5] -mt-1">
-                        {el.user}:
-                      </h3>
-                      <span className="ml-2 font-normal text-white">
-                        {el.message}
-                      </span>
-                    </div>
-                  );
-                })}
-              </ScrollToBottom>
+              {messageList?.map((el) => {
+                return (
+                  <div className="flex items-center" key={el.id}>
+                    <h3 className="text-xl font-medium text-[#5c17c5] -mt-1">
+                      {el.user}:
+                    </h3>
+                    <span className="ml-2 font-normal text-white">
+                      {el.message}
+                    </span>
+                  </div>
+                );
+              })}
+            </ScrollToBottom>
             <div className="absolute bottom-0 w-full">
               <div className="relative px-3">
                 <input

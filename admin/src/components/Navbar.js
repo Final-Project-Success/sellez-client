@@ -20,8 +20,8 @@ export default function Navbar() {
 
                     </Link>
                
-                  <Link to='/categories'  className="text-blue-500 text-sm font-bold hover:text-yellow-400 ease-linear transition-all duration-200">
-                Categories
+                  <Link to='/orders'  className="text-blue-500 text-sm font-bold hover:text-yellow-400 ease-linear transition-all duration-200">
+                Orders
 
                     </Link>
               </div>

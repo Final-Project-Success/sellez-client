@@ -1,28 +1,41 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, redirect } from "react-router-dom";
 import NewCategoryForm from "../components/NewCategoryForm";
-import CategoriesSection from "../views/Categories";
+
 import Home from "../views/Home";
 import Login from "../views/Login";
 import NewProductSection from "../views/NewProductSect";
+import OrdersSection from "../views/Orders";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
-    //  loader: () => {
-    //         if(!localStorage.getItem('access_token')) return redirect('/login')
-    //         else {
-    //             return null
-    //         }
-    //     }
+     loader: () => {
+            if(!localStorage.getItem('access_token')) return redirect('/login')
+            else {
+                return null
+            }
+        }
   },
   {
-    path: '/categories',
-    element: <CategoriesSection />
+    path: '/orders',
+    element: <OrdersSection />,
+    loader: () => {
+      if(!localStorage.getItem('access_token')) return redirect('/login')
+      else {
+          return null
+      }
+  }
   },
   {
     path: '/login',
-    element: <Login />
+    element: <Login />,
+    loader: () => {
+      if (localStorage.access_token) return redirect("/");
+      else {
+        return null;
+      }
+    },
   },
   {
     path: '/new-product',
