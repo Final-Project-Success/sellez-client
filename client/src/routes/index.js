@@ -7,6 +7,11 @@ import OrderPage from "../pages/OrderPage/OrderPage";
 import CheckoutPage from "../pages/CheckoutPage/CheckoutPage";
 import DetailPage from "../pages/DetailPage/DetailPage";
 import RegisterPage from "../pages/RegisterPage";
+<<<<<<< HEAD
+=======
+import OrderList from "../pages/Order/OrderList";
+import OrderDetail from "../pages/Order/OrderDetail";
+>>>>>>> 8c9b409abb4fb883cf0d16d66f03c1137142a1a4
 
 const router = createBrowserRouter([
   {
@@ -31,6 +36,14 @@ const router = createBrowserRouter([
       {
         path: "/detail-page/:id",
         element: <DetailPage />,
+      },
+      {
+        path: "/orders",
+        element: <OrderList />,
+      },
+      {
+        path: "/order-details",
+        element: <OrderDetail />,
       },
     ],
   },
