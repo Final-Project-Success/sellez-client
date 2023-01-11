@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/sellez-logoo.jpg";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   useLoginMutation,
   useOauthLoginMutation,
@@ -14,7 +16,7 @@ export default function LoginPage() {
   const navigate = useNavigate();
   const [login] = useLoginMutation();
   const [oauth] = useOauthLoginMutation();
-
+  const [alertMessage, setAlertMessage] = useState("");
   const [oauthInput, setOauthInput] = useState({
     username: "",
     email: "",
@@ -29,7 +31,6 @@ export default function LoginPage() {
       email: res.email,
       profilePict: res.photoURL,
     });
-    console.log(oauthInput, `<<<<<<< oauth `);
   };
 
   useEffect(() => {
@@ -45,7 +46,7 @@ export default function LoginPage() {
         profilePict: "",
       });
     });
-  }, [oauthInput]);
+  }, [oauthInput, oauth, navigate]);
 
   const [input, setInput] = useState({
     email: "",
@@ -75,16 +76,50 @@ export default function LoginPage() {
           password: "",
         });
       }
+      if (result.error) {
+        setAlertMessage(result.error.data.msg);
+      }
     });
   };
 
+  const errorNotify = () =>
+    toast.error(alertMessage, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+
+  useEffect(() => {
+    if (alertMessage !== "") {
+      console.log(alertMessage);
+      errorNotify();
+    }
+  }, [alertMessage]);
+
   return (
     <>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       <section class="h-screen">
         <div class="px-6 h-full text-gray-800">
           <div class="flex xl:justify-center lg:justify-between justify-center items-center flex-wrap h-full g-6">
             <div class="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 mb-12 md:mb-0">
-              <img src={logo} style={{ width: 700 }} alt="Sample image" />
+              <img src={logo} style={{ width: 700 }} alt="Product" />
             </div>
             <div class="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
               <form onSubmit={handleSubmit}>
@@ -161,12 +196,6 @@ export default function LoginPage() {
                     value={input.password}
                     name="password"
                   />
-                </div>
-
-                <div class="flex justify-between items-center mb-6">
-                  <a href="#!" class="text-gray-800">
-                    Forgot password?
-                  </a>
                 </div>
 
                 <div class="text-center lg:text-left">
