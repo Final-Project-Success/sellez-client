@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectTotalQTY, setOpenCart } from "../features/CartSlice.js";
 import { RiLiveLine } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 export default function NewNavbar() {
   const [navState, setNavState] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
@@ -19,9 +20,17 @@ export default function NewNavbar() {
     );
   };
   const handleLogout = () => {
-    localStorage.clear();
     setIsLogin(false);
     navigate("/");
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      heightAuto: true,
+      title: `See u ${localStorage.username}!`,
+      showConfirmButton: false,
+      timer: 1000,
+    });
+    localStorage.clear();
   };
   const onNavScroll = () => {
     if (window.scrollY > 30) {

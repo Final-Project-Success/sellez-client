@@ -15,7 +15,6 @@ export default function LoginPage() {
   const navigate = useNavigate();
   const [login] = useLoginMutation();
   const [oauth] = useOauthLoginMutation();
-  const [alertMessage, setAlertMessage] = useState("");
   const [oauthInput, setOauthInput] = useState({
     username: "",
     email: "",
@@ -44,6 +43,14 @@ export default function LoginPage() {
         email: "",
         profilePict: "",
       });
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        heightAuto: true,
+        title: `Welcome ${result.data.username}`,
+        showConfirmButton: false,
+        timer: 1000,
+      });
     });
   }, [oauthInput, oauth, navigate]);
 
@@ -71,20 +78,27 @@ export default function LoginPage() {
         localStorage.setItem("username", result.data.username);
         navigate("/");
         Swal.fire({
-          position: 'top-end',
-          icon: 'success',
+          position: "top-end",
+          icon: "success",
           heightAuto: true,
-          title: `Welcome ${input.email}`,
+          title: `Welcome ${result.data.username}`,
           showConfirmButton: false,
-          timer: 1000
-        })
+          timer: 1000,
+        });
         setInput({
           email: "",
           password: "",
         });
       }
       if (result.error) {
-        setAlertMessage(result.error.data.msg);
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          heightAuto: true,
+          title: result.error.data.msg,
+          showConfirmButton: false,
+          timer: 1000,
+        });
       }
     });
   };

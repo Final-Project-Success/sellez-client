@@ -53,7 +53,7 @@ export default function StreamingPage() {
     channel: "channel", // your agora channel,
     role: localStorage.role === "admin" ? "host" : "audience",
     token:
-      "007eJxTYFDrTvH1ErrBIDavKyKjzEx9U9dK0y1BSZo7Y5JSv3769FOBwSLNxMwy0SAxMdnA0MQk0STR0DzJKCXZwMA4xdQw1cTYvHlvckMgI0NCQi8jIwMEgvjsDMkZiXl5qTkMDAAv7h9T", // use null or skip if using app in testing mode
+      "007eJxTYChkMY7V71ikkRN8MkKpd1ONkn7JrW+Br8RmJ+jrcxgISigwWKSZmFkmGiQmJhsYmpgkmiQamicZpSQbGBinmBqmmhibPN6X3BDIyDCp9isTIwMEgvjsDMkZiXl5qTkMDACKvx2M", // use null or skip if using app in testing mode
   };
   const callbacks = {
     EndCall: () => setVideoCall(false),
@@ -79,20 +79,26 @@ export default function StreamingPage() {
             </div>
 
             <div className="flex justify-around gap-4 py-3">
-              {localStorage.role === "admin" ? (
-                <button
-                  className="py-2 px-3 text-white text-lg font-semibold bg-[#5c17c5] flex items-center border border-[#5c17c5] hover:bg-transparent hover:text-black transition-all duration-75 ease-in-out"
-                  onClick={() => setVideoCall(true)}
-                >
-                  <AiOutlinePlayCircle className="mr-2 text-2xl" /> Start Stream
-                </button>
-              ) : (
-                <button
-                  className="py-2 px-3 text-white text-lg font-semibold bg-[#5c17c5] flex items-center border border-[#5c17c5] hover:bg-transparent hover:text-black transition-all duration-75 ease-in-out"
-                  onClick={() => setVideoCall(true)}
-                >
-                  <AiOutlinePlayCircle className="mr-2 text-2xl" /> Join Stream
-                </button>
+              {!videoCall && (
+                <div>
+                  {localStorage.role === "admin" ? (
+                    <button
+                      className="py-2 px-3 text-white text-lg font-semibold bg-[#5c17c5] flex items-center border border-[#5c17c5] hover:bg-transparent hover:text-black transition-all duration-75 ease-in-out"
+                      onClick={() => setVideoCall(true)}
+                    >
+                      <AiOutlinePlayCircle className="mr-2 text-2xl" /> Start
+                      Stream
+                    </button>
+                  ) : (
+                    <button
+                      className="py-2 px-3 text-white text-lg font-semibold bg-[#5c17c5] flex items-center border border-[#5c17c5] hover:bg-transparent hover:text-black transition-all duration-75 ease-in-out"
+                      onClick={() => setVideoCall(true)}
+                    >
+                      <AiOutlinePlayCircle className="mr-2 text-2xl" /> Join
+                      Stream
+                    </button>
+                  )}
+                </div>
               )}
 
               <button
