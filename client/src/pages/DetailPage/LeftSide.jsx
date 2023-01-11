@@ -30,43 +30,6 @@ export default function LeftSide() {
         </div>
 
         {/* <!-- Quantity Button --> */}
-        <div className="w-full bg-white h-14 flex justify-center items-center border-buttonColor border-2">
-          {/* <!-- Quantity Text --> */}
-          <div className="w-full h-full px-2 bg-[#F5F5F5] text-center font-medium text-mainTextColor flex justify-center items-center">
-            <span>Quantity</span>
-          </div>
-
-          {/* <!-- Quantity Count --> */}
-          <div
-            className="w-full flex justify-between
-           items-center px-3 text-mainTextColor"
-          >
-            {/* <i
-              className="fa-solid fa-minus cursor-pointer decrement"
-              onClick={() => quantity > 1 && setQuantity((prev) => prev - 1)}
-            ></i> */}
-            <AiOutlinePlus
-              className="cursor-pointer decrement"
-              onClick={() => quantity > 1 && setQuantity((prev) => prev - 1)}
-            />
-            <span className="text-xl text-buttonColor font-semibold quantity">
-              {quantity}
-            </span>
-            {/* <i
-              className="fa-solid fa-plus cursor-pointer increment"
-              onClick={() => setQuantity((prev) => prev + 1)}
-            ></i> */}
-            <AiOutlineMinus
-              className="cursor-pointer increment"
-              onClick={() => setQuantity((prev) => prev + 1)}
-            />
-          </div>
-
-          {/* Add Button */}
-          <div className="w-full bg-buttonColor h-full flex justify-center items-center border border-1 border-l-2">
-            <button className="w-full text-black font-semibold">ADD</button>
-          </div>
-        </div>
       </div>
     </div>
   );

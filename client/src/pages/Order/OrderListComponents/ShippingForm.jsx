@@ -38,6 +38,8 @@ export default function ShippingForm() {
             result.data.rajaongkir.results[0].costs[0].cost[0].value,
           totalPrice: localStorage.totalPrice,
         }).then((result) => {
+          localStorage.setItem("cart", []);
+          localStorage.setItem("totalPrice", 0);
           navigate("/orders");
           console.log(result);
         });

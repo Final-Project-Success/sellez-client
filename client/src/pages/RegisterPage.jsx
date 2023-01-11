@@ -1,13 +1,12 @@
 import logo from "./../assets/sellez-logoo.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import { useRegisterMutation } from "../features/apiUser";
-import {  useState } from "react";
-import Swal from 'sweetalert2'
+import { useState } from "react";
+import Swal from "sweetalert2";
 
 export default function RegisterPage() {
   const navigate = useNavigate();
   const [register] = useRegisterMutation();
-  const [alertMessage, setAlertMessage] = useState("");
   const [input, setInput] = useState({
     username: "",
     email: "",
@@ -29,7 +28,9 @@ export default function RegisterPage() {
   const handleSubmit = (event) => {
     event.preventDefault();
     register(input).then((result) => {
+      console.log(result);
       if (result.data) {
+        navigate("/otp");
         setInput({
           username: "",
           email: "",
@@ -39,21 +40,19 @@ export default function RegisterPage() {
           phoneNumber: "",
         });
         Swal.fire({
-          position: 'top-end',
-          icon: 'success',
+          position: "top-end",
+          icon: "success",
           title: `Success Register`,
           showConfirmButton: false,
-          timer: 1500
-        })
-        navigate("/otp");
+          timer: 1500,
+        });
       }
 
       if (result.error) {
         Swal.fire({
-          icon: 'error',
-          text: `${result.error.data.message}`,
-
-        })
+          icon: "error",
+          text: `${result.error.data.msg}`,
+        });
       }
     });
   };
@@ -131,14 +130,12 @@ export default function RegisterPage() {
                 </div>
 
                 <div class="text-center lg:text-left">
-                  <Link to='/otp' >
                   <button
                     type="submit"
                     class="inline-block px-7 py-3 bg-yellow-300 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-200 ease-in-out"
                   >
                     Sign Up
                   </button>
-                  </Link>
 
                   <p class="text-sm font-semibold mt-2 pt-1 mb-0">
                     Already Have Account?

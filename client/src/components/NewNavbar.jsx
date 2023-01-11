@@ -20,22 +20,17 @@ export default function NewNavbar() {
     );
   };
   const handleLogout = () => {
-    Swal.fire({
-      title: "Are you sure?",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Logout",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        localStorage.clear();
     setIsLogin(false);
     navigate("/");
-        Swal.fire("Logged out!");
-      }
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      heightAuto: true,
+      title: `See u ${localStorage.username}!`,
+      showConfirmButton: false,
+      timer: 1000,
     });
-   
+    localStorage.clear();
   };
   const onNavScroll = () => {
     if (window.scrollY > 30) {

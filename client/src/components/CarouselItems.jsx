@@ -25,13 +25,13 @@ export default function CarouselItems({
     rupiah(price, "????");
     dispatch(setAddItemToCart(item));
     Swal.fire({
-      position: 'top-end',
-      icon: 'success',
+      position: "top-end",
+      icon: "success",
       heightAuto: true,
       title: `Added item to cart`,
       showConfirmButton: false,
-      timer: 1000
-    })
+      timer: 1000,
+    });
   };
 
   const rupiah = (number) => {
