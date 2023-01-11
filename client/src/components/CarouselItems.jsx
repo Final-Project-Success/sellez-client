@@ -2,8 +2,8 @@ import { AiFillShopping } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { setAddItemToCart, setOpenCart } from "../features/CartSlice";
 import { Link } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+// import { ToastContainer, toast } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
 import { useEffect, useState } from "react";
 export default function CarouselItems({
   id,
@@ -15,10 +15,10 @@ export default function CarouselItems({
   price,
 }) {
   const dispatch = useDispatch();
-  const [productCart, setProductCart] = useState("");
+  // const [productCart, setProductCart] = useState("");
   const onAddToCart = () => {
     const item = { id, name, text, imgUrl, color, shadow, price };
-    setProductCart(`Success add ${name} to cart!`);
+    // setProductCart(`Success add ${name} to cart!`);
     const rupiah = (number) => {
       return new Intl.NumberFormat("id-ID", {
         style: "currency",
@@ -45,25 +45,25 @@ export default function CarouselItems({
     );
   };
 
-  const successNotify = (msg) =>
-    toast.success(msg, {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-    });
+  // const successNotify = (msg) =>
+  //   toast.success(msg, {
+  //     position: "top-center",
+  //     autoClose: 5000,
+  //     hideProgressBar: false,
+  //     closeOnClick: true,
+  //     pauseOnHover: true,
+  //     draggable: true,
+  //     progress: undefined,
+  //     theme: "colored",
+  //   });
 
-  useEffect(() => {
-    successNotify(productCart);
-  }, [productCart]);
+  // useEffect(() => {
+  //   successNotify(productCart);
+  // }, [productCart]);
 
   return (
     <>
-      <ToastContainer
+      {/* <ToastContainer
         position="top-center"
         autoClose={5000}
         hideProgressBar={false}
@@ -74,7 +74,7 @@ export default function CarouselItems({
         draggable
         pauseOnHover
         theme="colored"
-      />
+      /> */}
       <div
         className={`relative bg-gradient-to-b ${color}  grid items-center justify-items-start rounded-xl py-5 px-5 transition-all duration-700 ease-in-out w-full min-h-full hover:scale-105`}
       >

@@ -2,13 +2,13 @@ import logo from "./../assets/sellez-logoo.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import { useRegisterMutation } from "../features/apiUser";
 import { useEffect, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+// import { ToastContainer, toast } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
 
 export default function RegisterPage() {
   const navigate = useNavigate();
   const [register] = useRegisterMutation();
-  const [alertMessage, setAlertMessage] = useState("");
+  // const [alertMessage, setAlertMessage] = useState("");
   const [input, setInput] = useState({
     username: "",
     email: "",
@@ -31,7 +31,7 @@ export default function RegisterPage() {
     event.preventDefault();
     register(input).then((result) => {
       if (result.data) {
-        successNotify(result.data.msg);
+        // successNotify(result.data.msg);
         setInput({
           username: "",
           email: "",
@@ -43,45 +43,45 @@ export default function RegisterPage() {
         navigate("/login");
       }
 
-      if (result.error) {
-        setAlertMessage(result.error.data.msg);
-      }
+      // if (result.error) {
+      //   setAlertMessage(result.error.data.msg);
+      // }
     });
   };
 
-  const successNotify = (msg) =>
-    toast.success(msg, {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-    });
+  // const successNotify = (msg) =>
+  //   toast.success(msg, {
+  //     position: "top-center",
+  //     autoClose: 5000,
+  //     hideProgressBar: false,
+  //     closeOnClick: true,
+  //     pauseOnHover: true,
+  //     draggable: true,
+  //     progress: undefined,
+  //     theme: "colored",
+  //   });
 
-  const errorNotify = () =>
-    toast.error(alertMessage, {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-    });
+  // const errorNotify = () =>
+  //   toast.error(alertMessage, {
+  //     position: "top-center",
+  //     autoClose: 5000,
+  //     hideProgressBar: false,
+  //     closeOnClick: true,
+  //     pauseOnHover: true,
+  //     draggable: true,
+  //     progress: undefined,
+  //     theme: "colored",
+  //   });
 
-  useEffect(() => {
-    if (alertMessage !== "") {
-      errorNotify();
-    }
-  }, [alertMessage]);
+  // useEffect(() => {
+  //   if (alertMessage !== "") {
+  //     errorNotify();
+  //   }
+  // }, [alertMessage]);
 
   return (
     <>
-      <ToastContainer
+      {/* <ToastContainer
         position="top-center"
         autoClose={5000}
         hideProgressBar={false}
@@ -92,7 +92,7 @@ export default function RegisterPage() {
         draggable
         pauseOnHover
         theme="colored"
-      />
+      /> */}
       <section class="h-screen">
         <div class="px-6 h-full text-gray-800">
           <div class="flex xl:justify-center lg:justify-between justify-center items-center flex-wrap h-full g-6">

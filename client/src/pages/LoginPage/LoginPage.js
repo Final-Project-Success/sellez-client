@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/sellez-logoo.jpg";
 import { Link } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+// import { ToastContainer, toast } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
 import {
   useLoginMutation,
   useOauthLoginMutation,
@@ -16,7 +16,7 @@ export default function LoginPage() {
   const navigate = useNavigate();
   const [login] = useLoginMutation();
   const [oauth] = useOauthLoginMutation();
-  const [alertMessage, setAlertMessage] = useState("");
+  // const [alertMessage, setAlertMessage] = useState("");
   const [oauthInput, setOauthInput] = useState({
     username: "",
     email: "",
@@ -76,34 +76,34 @@ export default function LoginPage() {
           password: "",
         });
       }
-      if (result.error) {
-        setAlertMessage(result.error.data.msg);
-      }
+      // if (result.error) {
+      //   setAlertMessage(result.error.data.msg);
+      // }
     });
   };
 
-  const errorNotify = () =>
-    toast.error(alertMessage, {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-    });
+  // const errorNotify = () =>
+  //   toast.error(alertMessage, {
+  //     position: "top-center",
+  //     autoClose: 5000,
+  //     hideProgressBar: false,
+  //     closeOnClick: true,
+  //     pauseOnHover: true,
+  //     draggable: true,
+  //     progress: undefined,
+  //     theme: "colored",
+  //   });
 
-  useEffect(() => {
-    if (alertMessage !== "") {
-      console.log(alertMessage);
-      errorNotify();
-    }
-  }, [alertMessage]);
+  // useEffect(() => {
+  //   if (alertMessage !== "") {
+  //     console.log(alertMessage);
+  //     errorNotify();
+  //   }
+  // }, [alertMessage]);
 
   return (
     <>
-      <ToastContainer
+      {/* <ToastContainer
         position="top-center"
         autoClose={5000}
         hideProgressBar={false}
@@ -114,7 +114,7 @@ export default function LoginPage() {
         draggable
         pauseOnHover
         theme="colored"
-      />
+      /> */}
       <section class="h-screen">
         <div class="px-6 h-full text-gray-800">
           <div class="flex xl:justify-center lg:justify-between justify-center items-center flex-wrap h-full g-6">
