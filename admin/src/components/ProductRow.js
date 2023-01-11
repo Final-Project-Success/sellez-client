@@ -42,9 +42,9 @@ export default function ProductRow({product, i}) {
                      
                     </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                     <img src={product.imgUrl} style={{width: 150}} alt={product.name} />
+                     <img src={product.imgUrl} style={{width: 200}} alt={product.name} />
                     </td>
-                    <td className="border-t-0 px-6 font-bold align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                    <td className="border-t-0  px-6 font-bold align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                       {product.stock}
                     </td>
                        
@@ -54,7 +54,7 @@ export default function ProductRow({product, i}) {
                       onDelete(product.id)
                     }}
                     >
-                    <FontAwesomeIcon icon={faTrashCanArrowUp} style={{marginLeft: 5}} className='cursor-pointer' size="lg" color='blue' 
+                    <FontAwesomeIcon icon={faTrashCanArrowUp} style={{marginLeft: 5}} className='cursor-pointer' size="2xl" color='blue' 
                     
                     />
                     </td>
