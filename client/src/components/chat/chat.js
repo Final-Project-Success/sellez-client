@@ -6,34 +6,40 @@ import { BiMicrophone } from "react-icons/bi";
 import { CiPaperplane } from "react-icons/ci";
 import { HiOutlineChevronDoubleDown } from "react-icons/hi";
 
-export default function Chat({ socket, username, room, toggle }) {
+export default function Chat({ socket, username, toggle, room }) {
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
 
   const sendMessage = async () => {
     if (currentMessage !== "") {
       const messageData = {
-        room: room,
-        user: username,
+        room: room.room,
+        user: localStorage.username,
         message: currentMessage,
         time:
           new Date(Date.now()).getHours() +
           ":" +
           new Date(Date.now()).getMinutes(),
       };
-
-      await socket.emit("send_message", messageData);
+      await socket.emit("send_msgprivate", messageData);
       setMessageList((message) => [...message, messageData]);
       // === for clear chat box ===
       setCurrentMessage("");
     }
   };
-
   useEffect(() => {
     socket.on("receive_msgprivate", (data) => {
+      console.log(data, "01010101");
       setMessageList((list) => [...list, data]);
     });
   }, [socket]);
+
+  useEffect(() => {
+    socket.on("loadChat", (data) => {
+      console.log(data);
+      setMessageList(() => [...data]);
+    });
+  }, []);
 
   return (
     <div className="h-full w-full flex flex-col justify-between">
@@ -66,12 +72,13 @@ export default function Chat({ socket, username, room, toggle }) {
       </div>
 
       <div className="w-full">
-        <ScrollToBottom>
+        <ScrollToBottom className="message-container">
           {messageList.map((el) => {
+            console.log(el.privatemsg, "testt");
             return (
               <div
                 className={`my-2 mx-3 ${
-                  username === el.user ? "text-right" : "text-left"
+                  username === el.user ? "flex-end" : "flex-start"
                 }`}
               >
                 <div
@@ -85,7 +92,13 @@ export default function Chat({ socket, username, room, toggle }) {
                   <p>{el.message}</p>
                 </div>
 
-                <p className="text-xs">{el.time}</p>
+                <p
+                  className={`text-xs ${
+                    username === el.user ? "text-right" : "text-left"
+                  }`}
+                >
+                  {el.time}
+                </p>
               </div>
             );
           })}
