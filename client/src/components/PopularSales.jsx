@@ -1,6 +1,5 @@
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/css";
-import psale2 from "../assets/product2.png";
 import CarouselItems from "./CarouselItems.jsx";
 const { useGetProductsQuery } = require("../features/apiSlice.js");
 export default function PopularSales() {

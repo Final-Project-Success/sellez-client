@@ -8,7 +8,6 @@ import { useGetOrdersQuery } from "../../features/apiOrder";
 export default function OrderList() {
   const { data, error, isLoading } = useGetOrdersQuery();
 
-  console.log(data);
   return (
     <div className="detailspage min-h-screen flex justify-center items-center">
       {/* Importing Components */}

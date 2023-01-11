@@ -14,7 +14,21 @@ export const ordersApi = createApi({
         };
       },
     }),
+    postOrders: builder.mutation({
+      query: (order) => {
+        console.log(order, "<<<<<<<<<<<");
+        return {
+          url: "/orders",
+          method: "POST",
+          body: order,
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            access_token: localStorage.getItem("access_token"),
+          },
+        };
+      },
+    }),
   }),
 });
 
-export const { useGetOrdersQuery } = ordersApi;
+export const { useGetOrdersQuery, usePostOrdersMutation } = ordersApi;

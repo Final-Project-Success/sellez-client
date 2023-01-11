@@ -97,7 +97,7 @@ export default function ChatPage() {
             ? joinRoom
             : () => setOpenChat(!openChat)
         }
-        className="w-20 rounded-full ml-auto mt-5 shadow-xl fixed right-4 bottom-4 z-[9999]"
+        className="w-20 rounded-full ml-auto mt-5 shadow-xl fixed right-4 bottom-4 z-[99]"
       >
         <img
           className="rounded-full shadow-xl"

@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-const { useGetProductsQuery } = require("../apiSlice");
 
 const initialState = {
   products: [],
