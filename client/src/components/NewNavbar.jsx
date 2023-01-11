@@ -58,7 +58,7 @@ export default function NewNavbar() {
             </Link>
           </div>
           <ul className="flex items-center justify-center gap-2">
-            {isLogin && (
+            {isLogin && localStorage.role === "customer" && (
               <li className="grid items-center">
                 <button
                   type="button"

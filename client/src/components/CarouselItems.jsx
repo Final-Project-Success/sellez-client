@@ -63,13 +63,15 @@ export default function CarouselItems({
           </div>
 
           <div className="flex items-center gap-3">
-            <button
-              type="button"
-              className="bg-white/90 blur-effect-theme button-theme p-0.5 shadow shadow-sky-200"
-              onClick={() => onAddToCart()}
-            >
-              <AiFillShopping className="icon-style text-slate-900" />
-            </button>
+            {localStorage.role === "customer" && (
+              <button
+                type="button"
+                className="bg-white/90 blur-effect-theme button-theme p-0.5 shadow shadow-sky-200"
+                onClick={() => onAddToCart()}
+              >
+                <AiFillShopping className="icon-style text-slate-900" />
+              </button>
+            )}
             <Link
               to={`/detail-page/${id}`}
               className="bg-white/90 blur-effect-theme button-theme px-2 py-1 shadow shadow-sky-200 text-sm text-black"
