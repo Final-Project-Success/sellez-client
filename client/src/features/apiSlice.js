@@ -11,7 +11,14 @@ export const productsApi = createApi({
     getProductById: builder.query({
       query: (id) => `products/${id}`,
     }),
+    getAllRajaOngkir: builder.query({
+      query: () => "orders/city",
+    }),
   }),
 });
 
-export const { useGetProductsQuery, useGetProductByIdQuery } = productsApi;
+export const {
+  useGetProductsQuery,
+  useGetProductByIdQuery,
+  useGetAllRajaOngkirQuery,
+} = productsApi;

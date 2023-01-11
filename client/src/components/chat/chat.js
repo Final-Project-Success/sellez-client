@@ -21,6 +21,7 @@ export default function Chat({ socket, username, toggle, room }) {
           ":" +
           new Date(Date.now()).getMinutes(),
       };
+
       await socket.emit("send_msgprivate", messageData);
       setMessageList((message) => [...message, messageData]);
       // === for clear chat box ===
@@ -41,6 +42,14 @@ export default function Chat({ socket, username, toggle, room }) {
     });
   }, []);
 
+  function getUsername() {
+    if (localStorage.role === "customer") {
+      return "Admin";
+    } else {
+      return username;
+    }
+  }
+
   return (
     <div className="h-full w-full flex flex-col justify-between">
       {/* chat top */}
@@ -59,10 +68,10 @@ export default function Chat({ socket, username, toggle, room }) {
           </div>
           <div>
             <div className="relative h-12 w-12 grid place-items-center mx-auto bg-[#116cfc] rounded-full shadow-lg">
-              <h1 className="text-3xl capitalize text-white">{username}</h1>
+              <h1 className="text-3xl capitalize text-white"></h1>
               <span className="absolute w-3 h-3 block right-[1px] bottom-1 rounded-full bg-green-500 shadow-lg"></span>
             </div>
-            <h3 className="capitalize text-center">{username}</h3>
+            <h3 className="capitalize text-center">{getUsername()}</h3>
           </div>
 
           <div className="shadow-lg p-2 rounded-full cursor-pointer">
@@ -72,7 +81,7 @@ export default function Chat({ socket, username, toggle, room }) {
       </div>
 
       <div className="w-full">
-        <ScrollToBottom className="message-container">
+        <ScrollToBottom className="message-container h-[250px]">
           {messageList.map((el) => {
             console.log(el.privatemsg, "testt");
             return (
