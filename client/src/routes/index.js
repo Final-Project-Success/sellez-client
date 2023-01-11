@@ -9,7 +9,6 @@ import DetailPage from "../pages/DetailPage/DetailPage";
 import RegisterPage from "../pages/RegisterPage";
 import OrderList from "../pages/Order/OrderList";
 import OrderDetail from "../pages/Order/OrderDetail";
-import ChatPageNew from "../pages/ChatPageNew";
 
 const router = createBrowserRouter([
   {
