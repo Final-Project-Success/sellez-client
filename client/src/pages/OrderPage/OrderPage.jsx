@@ -22,14 +22,6 @@ export default function OrderPage() {
                 <ShippingForm />
                 <ShippingCost />
               </div>
-              <div className="w-8/12 mb-4 flex justify-between items-center gap-8 pl-6 pr-8 mt-10">
-                <button className="w-full bg-[#F8F9FD] text-progressBg font-semibold py-2 rounded-md">
-                  Back to Cart
-                </button>
-                <button className="w-full bg-progressBg text-white font-semibold py-2 rounded-md">
-                  Procced to Payment
-                </button>
-              </div>
             </div>
           </div>
         </div>
