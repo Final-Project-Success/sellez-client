@@ -54,7 +54,7 @@ export default function ChatPage() {
         <div
           className={`w-24 h-full absolute top-0 bg-white pt-3 px-2 text-center border rounded-md shadow-xl transition-all duration-300 delay-300 ease-in-out ${
             openChat ? "opacity-0 -left-52" : "opacity-1 -left-[96px]"
-          } ${localStorage.role !== "Admin" ? "hidden" : "block"}`}
+          } ${localStorage.role !== "admin" ? "hidden" : "block"}`}
         >
           <h2 className="text-xl font-medium mb-8 border px-2">Sellez</h2>
           {listUser.length ? (
@@ -93,11 +93,11 @@ export default function ChatPage() {
 
       <div
         onClick={
-          localStorage.role !== "Admin"
+          localStorage.role !== "admin"
             ? joinRoom
             : () => setOpenChat(!openChat)
         }
-        className="w-20 rounded-full ml-auto mt-5 shadow-xl fixed right-4 bottom-4 z-[9999]"
+        className="w-20 rounded-full ml-auto mt-5 shadow-xl fixed right-4 bottom-4 z-[99]"
       >
         <img
           className="rounded-full shadow-xl"
