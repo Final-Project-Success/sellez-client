@@ -1,8 +1,4 @@
-import {
-  AiOutlinePlayCircle,
-  AiOutlineShoppingCart,
-  AiFillSetting,
-} from "react-icons/ai";
+import { AiOutlinePlayCircle, AiOutlineShoppingCart } from "react-icons/ai";
 import io from "socket.io-client";
 import { BsPeople } from "react-icons/bs";
 import { CgShapeCircle } from "react-icons/cg";
@@ -148,10 +144,8 @@ export default function StreamingPage() {
               <div className="flex items-center justify-between px-3 py-4">
                 <div className="flex items-center gap-3">
                   <CgShapeCircle className="text-2xl ml-2 text-[#5c17c5]" />
-                  <span className="font-medium">0</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <AiFillSetting className="text-xl" />
                   <button
                     onClick={sendMessage}
                     className="py-1 px-3 text-white font-medium rounded-md bg-[#5c17c5]"
