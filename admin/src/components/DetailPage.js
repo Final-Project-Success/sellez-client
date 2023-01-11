@@ -1,5 +1,7 @@
 import { DetailCard } from "./DetailCard";
-
+import { faX } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 export default function DetailPage({ order }) {
 
     const rupiah = (number)=>{
@@ -12,13 +14,23 @@ export default function DetailPage({ order }) {
   return (
     <>
     <div>
-      <div class="py-8 px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto">
+      <div class="py-8 px-4 md:px-6 2xl:px-20 flex 2xl:container 2xl:mx-auto">
         <div class="flex justify-start item-start space-y-2 flex-col">
           <h1 class="text-3xl dark:text-white lg:text-4xl font-semibold leading-7 lg:leading-9 text-gray-800">
             Order {order.id}
           </h1>
         </div>
+        <div style={{ marginTop: 10, marginLeft: 1030 }} >
+        <Link
+          to="/orders"
+          className="text-blue-500 text-sm font-bold hover:text-yellow-400 mr-10 ease-linear transition-all duration-200"
+        >
+          <FontAwesomeIcon icon={faX} size="2xl" />
+        </Link>
       </div>
+      </div>
+
+       
 
       {order.OrderProducts?.map((Op) => {
         return <DetailCard Op={Op}  />;
@@ -51,9 +63,6 @@ export default function DetailPage({ order }) {
                 </div>
               </div>
               <p class="text-lg font-semibold leading-6 dark:text-white text-gray-800">{rupiah(order.shippingCost)}</p>
-            </div>
-            <div class="w-full flex justify-center items-center">
-              <button class="hover:bg-black dark:bg-white dark:text-gray-800 dark:hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 py-5 w-96 md:w-full bg-gray-800 text-base font-medium leading-4 text-white">Pajangan dulu</button>
             </div>
           </div>
         </div>
