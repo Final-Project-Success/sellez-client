@@ -9,6 +9,7 @@ import DetailPage from "../pages/DetailPage/DetailPage";
 import RegisterPage from "../pages/RegisterPage";
 import OrderList from "../pages/Order/OrderList";
 import OrderDetail from "../pages/Order/OrderDetail";
+import OtpForm from '../components/OtpForm'
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
         return null;
       }
     },
+  },
+  {
+    path: 'otp',
+    element: <OtpForm />
   },
   {
     path: "/register",
