@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { usePostOrdersMutation } from "../../../features/apiOrder";
 import { useGetCityRajaOngkirQuery } from "../../../features/apiSlice";
 import { useGetCostRajaOngkirMutation } from "../../../features/apiSlice";
+
 export default function ShippingForm() {
+  const [postOrdersMutation] = usePostOrdersMutation();
   const [getCostRajaOngkir] = useGetCostRajaOngkirMutation();
+  const [orders, setOrders] = useState([]);
   const { data, isLoading, isError } = useGetCityRajaOngkirQuery();
   const [input, setInput] = useState({
     destination: 0,
@@ -28,13 +32,16 @@ export default function ShippingForm() {
           destination: 0,
           courier: "",
         });
-        console.log(result.data.rajaongkir.results[0].costs[0].cost[0].value);
-        navigate("/orders");
+        postOrdersMutation({
+          products: localStorage.cart,
+          shippingCost:
+            result.data.rajaongkir.results[0].costs[0].cost[0].value,
+          totalPrice: localStorage.totalPrice,
+        }).then((result) => {
+          navigate("/orders");
+          console.log(result);
+        });
       }
-
-      // if (result.error) {
-      // setAlertMessage(result.error.data.msg);
-      // }
     });
   };
 

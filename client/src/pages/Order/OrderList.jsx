@@ -4,11 +4,11 @@ import Badge from "./OrderListComponents/Badge";
 import ScrollToBottom from "react-scroll-to-bottom";
 import { CgShoppingBag } from "react-icons/cg";
 import { useGetOrdersQuery } from "../../features/apiOrder";
+import { useEffect, useState } from "react";
 
 export default function OrderList() {
   const { data, error, isLoading } = useGetOrdersQuery();
 
-  console.log(data);
   return (
     <div className="detailspage min-h-screen flex justify-center items-center">
       {/* Importing Components */}
