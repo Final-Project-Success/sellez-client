@@ -7,7 +7,8 @@ import OrderPage from "../pages/OrderPage/OrderPage";
 import CheckoutPage from "../pages/CheckoutPage/CheckoutPage";
 import DetailPage from "../pages/DetailPage/DetailPage";
 import RegisterPage from "../pages/RegisterPage";
-import ChatPageNew from "../pages/ChatPageNew";
+import OrderList from "../pages/Order/OrderList";
+import OrderDetail from "../pages/Order/OrderDetail";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,14 @@ const router = createBrowserRouter([
       {
         path: "/detail-page/:id",
         element: <DetailPage />,
+      },
+      {
+        path: "/orders",
+        element: <OrderList />,
+      },
+      {
+        path: "/order-details",
+        element: <OrderDetail />,
       },
     ],
   },
