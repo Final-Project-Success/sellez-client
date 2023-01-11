@@ -1,17 +1,15 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useGetCityRajaOngkirQuery } from "../../../features/apiSlice";
 import { useGetCostRajaOngkirMutation } from "../../../features/apiSlice";
 export default function ShippingForm() {
   const [getCostRajaOngkir] = useGetCostRajaOngkirMutation();
-  const {
-    data: city,
-    isLoading: loadingCity,
-    isError: errorCity,
-  } = useGetCityRajaOngkirQuery();
+  const { data, isLoading, isError } = useGetCityRajaOngkirQuery();
   const [input, setInput] = useState({
     destination: 0,
     courier: "",
   });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -20,7 +18,6 @@ export default function ShippingForm() {
       ...input,
       [name]: value,
     });
-    console.log(input);
   };
 
   const handleSubmit = (event) => {
@@ -32,7 +29,7 @@ export default function ShippingForm() {
           courier: "",
         });
         console.log(result.data.rajaongkir.results[0].costs[0].cost[0].value);
-        // navigate("/login");
+        navigate("/orders");
       }
 
       // if (result.error) {
@@ -77,7 +74,7 @@ export default function ShippingForm() {
               onChange={handleChange}
               className="w-full bg-transparent outline-none text-gray-400"
             >
-              {city?.rajaongkir.results.map((el) => {
+              {data?.rajaongkir.results.map((el) => {
                 return <option value={el.city_id}>{el.city_name}</option>;
               })}
             </select>
@@ -107,9 +104,11 @@ export default function ShippingForm() {
           />
         </div>
         <div className="flex justify-between items-center gap-10 mb-4">
-          <button className="w-full bg-[#F8F9FD] text-progressBg font-semibold py-2 rounded-md">
-            Back to Cart
-          </button>
+          <Link to={"/"}>
+            <button className="w-full bg-[#F8F9FD] text-progressBg font-semibold py-2 rounded-md">
+              Back to Cart
+            </button>
+          </Link>
           <button
             type="submit"
             className="w-full bg-progressBg text-white font-semibold py-2 rounded-md"
