@@ -1,4 +1,4 @@
-export default function OrderCard({ orderId, badge, date, price }) {
+export default function OrderCard({ data, orderId, badge, date, price }) {
   return (
     <div className="bg-white w-full flex justify-between items-center shadow-md py-[10px] rounded-xl px-8 cursor-pointer my-4">
       <div className="w-[20%]">

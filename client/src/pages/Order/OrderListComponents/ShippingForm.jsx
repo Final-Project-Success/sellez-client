@@ -75,7 +75,11 @@ export default function ShippingForm() {
               className="w-full bg-transparent outline-none text-gray-400"
             >
               {data?.rajaongkir.results.map((el) => {
-                return <option value={el.city_id}>{el.city_name}</option>;
+                return (
+                  <option value={el.city_id} key={el.city_id}>
+                    {el.city_name}
+                  </option>
+                );
               })}
             </select>
           </div>

@@ -1,7 +1,7 @@
 import logo from "./../assets/sellez-logoo.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import { useRegisterMutation } from "../features/apiUser";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function RegisterPage() {
   const navigate = useNavigate();
