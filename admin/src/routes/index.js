@@ -4,31 +4,37 @@ import NewCategoryForm from "../components/NewCategoryForm";
 import Home from "../views/Home";
 import Login from "../views/Login";
 import NewProductSection from "../views/NewProductSect";
+import OrderDetail from "../views/OrderDetail";
 import OrdersSection from "../views/Orders";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
-     loader: () => {
-            if(!localStorage.getItem('access_token')) return redirect('/login')
-            else {
-                return null
-            }
-        }
+    loader: () => {
+      if (!localStorage.getItem("access_token")) return redirect("/login");
+      else {
+        return null;
+      }
+    },
   },
   {
-    path: '/orders',
+    path: "/orders",
     element: <OrdersSection />,
     loader: () => {
-      if(!localStorage.getItem('access_token')) return redirect('/login')
+      if (!localStorage.getItem("access_token")) return redirect("/login");
       else {
-          return null
+        return null;
       }
-  }
+    },
   },
   {
-    path: '/login',
+    path: '/orders/:id',
+    element: <OrderDetail />
+  },
+ 
+  {
+    path: "/login",
     element: <Login />,
     loader: () => {
       if (localStorage.access_token) return redirect("/");
@@ -38,13 +44,13 @@ const router = createBrowserRouter([
     },
   },
   {
-    path: '/new-product',
-    element: <NewProductSection />
+    path: "/new-product",
+    element: <NewProductSection />,
   },
   {
-    path: '/new-category',
-    element: <NewCategoryForm />
-  }
+    path: "/new-category",
+    element: <NewCategoryForm />,
+  },
 ]);
 
 export default router;
