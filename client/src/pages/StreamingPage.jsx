@@ -23,7 +23,6 @@ export default function StreamingPage() {
   useEffect(() => {
     setMessageList(data);
   }, [data]);
-  console.log(isLoading, data, error, `<<<< data message useChattquery`);
 
   const toggle = () => {
     setShow(!show);
@@ -31,7 +30,6 @@ export default function StreamingPage() {
 
   // for message
   const sendMessage = async () => {
-    console.log(`send mesage`);
     if (currentMessage !== "") {
       const messageData = {
         user: localStorage.username,
@@ -41,7 +39,6 @@ export default function StreamingPage() {
           ":" +
           new Date(Date.now()).getMinutes(),
       };
-      // console.log(messageList, `<<<<<< data`);
       await socket.emit("send_message", messageData);
       // === for clear chat box ===
       setCurrentMessage("");
@@ -52,7 +49,7 @@ export default function StreamingPage() {
     socket.on("receive_message", (newMessage) => {
       setMessageList((message) => [...message, newMessage]);
     });
-  }, [socket]);
+  }, []);
 
   const [videoCall, setVideoCall] = useState(false);
   const rtcProps = {
@@ -60,7 +57,7 @@ export default function StreamingPage() {
     channel: "channel", // your agora channel,
     role: localStorage.role === "admin" ? "host" : "audience",
     token:
-      "007eJxTYHisNmVFoX9NuGXzEXkPN+tDz79YPvu4gGN7Te/ucLk8/VsKDBZpJmaWiQaJickGhiYmiSaJhuZJRinJBgbGKaaGqSbGO+p2JzcEMjKslFzGysgAgSA+O0NyRmJeXmoOAwMA0tEhKA==", // use null or skip if using app in testing mode
+      "007eJxTYFDrTvH1ErrBIDavKyKjzEx9U9dK0y1BSZo7Y5JSv3769FOBwSLNxMwy0SAxMdnA0MQk0STR0DzJKCXZwMA4xdQw1cTYvHlvckMgI0NCQi8jIwMEgvjsDMkZiXl5qTkMDAAv7h9T", // use null or skip if using app in testing mode
   };
   const callbacks = {
     EndCall: () => setVideoCall(false),

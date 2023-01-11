@@ -1,4 +1,4 @@
-import logo from "./images/sellez-logoo.jpg";
+import logo from "./../assets/sellez-logoo.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import { useRegisterMutation } from "../features/apiUser";
 import { useState } from "react";
