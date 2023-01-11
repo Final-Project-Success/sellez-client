@@ -20,7 +20,6 @@ export default function OrderPage() {
               </div>
               <div className="flex justify-between gap-8 mt-4">
                 <ShippingForm />
-                <ShippingCost />
               </div>
             </div>
           </div>
