@@ -94,4 +94,8 @@
     -webkit-backdrop-filter: blur(6.8px);
     border: 1px solid rgba(255, 255, 255, 0.3);
   }
+  .agora_video_player {
+    display: flex;
+    justify-content: center;
+  }
 }
