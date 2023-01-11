@@ -2,7 +2,12 @@ import LeftSide from "./LeftSide";
 import MiddleSide from "./MiddleSide";
 import RightSide from "./RightSide";
 
+import { useGetProductByIdQuery } from "../../features/apiSlice";
+
+import { useParams } from "react-router-dom";
 export default function DetailPage() {
+  const { id } = useParams();
+  const { data, isLoading, error } = useGetProductByIdQuery(id);
   return (
     <div className="detailspage min-h-screen flex justify-center items-center">
       {/* Importing Components */}
@@ -23,7 +28,7 @@ export default function DetailPage() {
         {/* Middle */}
         <MiddleSide />
         {/* Right */}
-        <RightSide />
+        <RightSide data={data} />
       </div>
       {/* Container End */}
     </div>
