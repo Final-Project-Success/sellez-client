@@ -1,18 +1,19 @@
 import logo from "./../assets/sellez-logoo.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import { useRegisterMutation } from "../features/apiUser";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function RegisterPage() {
   const navigate = useNavigate();
   const [register] = useRegisterMutation();
-
+  const [alertMessage, setAlertMessage] = useState("");
   const [input, setInput] = useState({
     username: "",
     email: "",
     password: "",
     address: "",
-    profilePict: "",
     role: "customer",
     phoneNumber: "",
   });
@@ -24,36 +25,74 @@ export default function RegisterPage() {
       ...input,
       [name]: value,
     });
-    console.log(input);
-  };
-
-  const handleChangeFile = (e) => {
-    console.log(e.target.files[0]);
-    setInput({
-      ...input,
-      profilePict: [input.profilePict, e.target.files[0]],
-    });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     register(input).then((result) => {
       if (result.data) {
-        navigate("/login");
+        successNotify(result.data.msg);
         setInput({
           username: "",
           email: "",
           password: "",
           address: "",
-          profilePict: "",
           role: "customer",
           phoneNumber: "",
         });
+        navigate("/login");
+      }
+
+      if (result.error) {
+        setAlertMessage(result.error.data.msg);
       }
     });
   };
+
+  const successNotify = (msg) =>
+    toast.success(msg, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+
+  const errorNotify = () =>
+    toast.error(alertMessage, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+
+  useEffect(() => {
+    if (alertMessage !== "") {
+      errorNotify();
+    }
+  }, [alertMessage]);
+
   return (
     <>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       <section class="h-screen">
         <div class="px-6 h-full text-gray-800">
           <div class="flex xl:justify-center lg:justify-between justify-center items-center flex-wrap h-full g-6">
@@ -112,21 +151,6 @@ export default function RegisterPage() {
                   />
                 </div>
 
-                <label
-                  class="block mb-6 text-sm font-medium text-gray-900 dark:text-white"
-                  for="file_input"
-                >
-                  Profile Picture
-                </label>
-                <input
-                  class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                  aria-describedby="file_input_help"
-                  id="file_input"
-                  type="file"
-                  onChange={handleChangeFile}
-                  enctype
-                />
-
                 <div class="mb-6 mt-6">
                   <input
                     type="text"
@@ -137,12 +161,6 @@ export default function RegisterPage() {
                     onChange={handleChange}
                     value={input.phoneNumber}
                   />
-                </div>
-
-                <div class="flex justify-between items-center mb-6">
-                  <a href="#!" class="text-gray-800">
-                    Forgot password?
-                  </a>
                 </div>
 
                 <div class="text-center lg:text-left">

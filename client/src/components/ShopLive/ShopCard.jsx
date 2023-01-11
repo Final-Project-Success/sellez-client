@@ -1,4 +1,4 @@
-export default function ({ item }) {
+export default function ShopCard({ item }) {
   const { title, img, price, color, shadow, text } = item;
   const rupiah = (number) => {
     return new Intl.NumberFormat("id-ID", {
