@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import Chat from "../../components/chat/chat";
 import chatImage from "../../assets/chat.png";
 const socket = io.connect("http://localhost:3001");
+const Profile =
+  "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png";
 export default function ChatPage() {
   const [username, setUsername] = useState(localStorage.username);
   const [room, setRoom] = useState("");
@@ -43,9 +45,9 @@ export default function ChatPage() {
   }, []);
 
   return (
-    <div className="fixed right-4 bottom-4 z-[9999]">
+    <>
       <div
-        className={`h-[450px] w-72 bg-white shadow-xl rounded-xl relative grid place-items-center ${
+        className={`fixed right-4 bottom-32 z-[9999] h-[450px] w-72 bg-white shadow-xl rounded-xl grid place-items-center ${
           openChat ? "scale-x-0 scale-y-0" : "scale-x-1 scale-y-1"
         } transition-all duration-300 ease-in-out origin-bottom-right`}
       >
@@ -103,6 +105,6 @@ export default function ChatPage() {
           alt="chat icon"
         />
       </div>
-    </div>
+    </>
   );
 }

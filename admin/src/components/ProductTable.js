@@ -5,15 +5,23 @@ import ProductRow from "./ProductRow";
 import { useEffect } from 'react';
 import {useDispatch, useSelector } from 'react-redux'
 import { fetchProducts } from "../stores/actions/product";
+import Loading from "./Loading";
 export default function Table() {
   const products = useSelector((state) => state.productReducer.products)
+  const loading = useSelector((state) => state.loadingReducer.loading)
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(fetchProducts())
   })
+  if(loading) {
+    return (
+      <Loading />
+    )
+  }
   return (
     <>
+     
       <section className="py-1 bg-blueGray-50">
         <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4 mx-auto mt-10">
           <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl ">

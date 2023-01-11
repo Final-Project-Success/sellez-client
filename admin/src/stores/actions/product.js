@@ -1,5 +1,7 @@
 import axios from "axios";
+import setLoading from "./loading";
 let baseUrl = "http://localhost:4000";
+
 
 export function fetchProducts() {
   return async (dispatch) => {
@@ -11,6 +13,8 @@ export function fetchProducts() {
       dispatch({ type: "products/fetchAll", payload: data });
     } catch (error) {
       console.log(error);
+    }finally {
+      dispatch(setLoading(false))
     }
   };
 }
@@ -36,7 +40,6 @@ export function deleteProduct(id) {
 export function createProduct(input, image) {
   return async (dispatch) => {
     try {
-
       const form = new FormData();
 
       form.append("name", input.name);
@@ -46,12 +49,11 @@ export function createProduct(input, image) {
       form.append("CategoryId", input.CategoryId);
 
       form.append("description", input.description);
-      // form.append("imgUrl",image.image)
-       for(let x = 0; x <image.image.length; x++) {
-       form.append('imgUrl', image.image[x])
+      for (let x = 0; x < image.image.length; x++) {
+        form.append("imgUrl", image.image[x]);
       }
 
-      const { data } = await axios({
+      await axios({
         method: "POST",
         url: `${baseUrl}/products`,
         data: form,
@@ -59,10 +61,12 @@ export function createProduct(input, image) {
           "Content-Type": "multipart/form-data",
         },
       });
-  
+
       dispatch(fetchProducts());
     } catch (error) {
       console.log(error);
+    }finally {
+      dispatch(setLoading(false))
     }
   };
 }

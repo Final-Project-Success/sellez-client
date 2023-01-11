@@ -1,7 +1,6 @@
-import { AiOutlineStar, AiFillShopping } from "react-icons/ai";
+import { AiFillShopping } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { setAddItemToCart, setOpenCart } from "../features/CartSlice";
-// import { GiRunningShoe } from "react-icons/gi";
 import { Link } from "react-router-dom";
 export default function GridItems({
   id,
@@ -10,7 +9,6 @@ export default function GridItems({
   name,
   Category,
   imgUrl,
-  btn,
   stock,
   price,
 }) {
@@ -49,13 +47,9 @@ export default function GridItems({
           <div className="flex items-center  w-28 my-2">
             <div className="flex items-center bg-white/80  px-1 rounded blur-effect-theme">
               <h1 className="text-black text-sm font-medium">
-                Rp.{rupiah(price)}
+                {rupiah(price)}
               </h1>
             </div>
-            {/* <div className="flex items-center gap-1">
-              <GiRunningShoe className="icon-style w-5 h-5 md:w-4 md:h-4" />
-              <h1 className="md:text-sm font-normal text-slate-100">{stock}</h1>
-            </div> */}
           </div>
           <div className="flex items-center gap-3 mb-2">
             <button
@@ -70,20 +64,18 @@ export default function GridItems({
             </button>
           </div>
           <div className="flex items-center gap-3">
-            <button
-              type="button"
-              className="bg-white/90 blur-effect-theme button-theme p-0.5 shadow shadow-sky-200"
-              onClick={() => onAddToCart()}
-            >
-              <AiFillShopping className="icon-style text-slate-900" />
-            </button>
+            {localStorage.role === "customer" && (
+              <button
+                type="button"
+                className="bg-white/90 blur-effect-theme button-theme p-0.5 shadow shadow-sky-200"
+                onClick={() => onAddToCart()}
+              >
+                <AiFillShopping className="icon-style text-slate-900" />
+              </button>
+            )}
             <Link
               to={`/detail-page/${id}`}
               className="bg-white/90 blur-effect-theme button-theme px-2 py-1 shadow shadow-sky-200 text-sm text-black"
-              // onClick={() => {
-              //   onAddToCart();
-              //   onCartToggle();
-              // }}
             >
               Detail
             </Link>
