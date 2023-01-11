@@ -2,6 +2,7 @@ import logo from "./../assets/sellez-logoo.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import { useRegisterMutation } from "../features/apiUser";
 import { useEffect, useState } from "react";
+import Swal from 'sweetalert2'
 
 export default function RegisterPage() {
   const navigate = useNavigate();
@@ -37,11 +38,22 @@ export default function RegisterPage() {
           role: "customer",
           phoneNumber: "",
         });
-        navigate("/login");
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: `Success Register`,
+          showConfirmButton: false,
+          timer: 1500
+        })
+        navigate("/otp");
       }
 
       if (result.error) {
-        setAlertMessage(result.error.data.msg);
+        Swal.fire({
+          icon: 'error',
+          text: `${result.error.data.message}`,
+
+        })
       }
     });
   };
