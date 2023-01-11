@@ -1,10 +1,11 @@
+import { useGetAllRajaOngkirQuery } from "../../../features/apiSlice";
 export default function ShippingForm() {
+  const { data, isLoading, isError } = useGetAllRajaOngkirQuery();
+  console.log(data);
   return (
     <div className="w-8/12 bg-white p-6 shadow-lg rounded-xl">
       <div className="mb-4">
-        <h2 className="text-textBlack text-xl font-semibold">
-          Shipping Address
-        </h2>
+        <h2 className="text-textBlack text-xl font-semibold"></h2>
       </div>
       <form>
         {/* Heading */}

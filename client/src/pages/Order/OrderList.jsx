@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import { CgShoppingBag } from "react-icons/cg";
 import OrderCard from "./OrderListComponents/OrderCard";
 import Badge from "./OrderListComponents/Badge";
 import ScrollToBottom from "react-scroll-to-bottom";
+import { CgShoppingBag } from "react-icons/cg";
 
 export default function OrderList() {
   return (
