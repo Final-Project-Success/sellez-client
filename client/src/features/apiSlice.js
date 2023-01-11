@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-// import {}
 
 export const productsApi = createApi({
   reducerPath: "productApi",
@@ -11,8 +10,28 @@ export const productsApi = createApi({
     getProductById: builder.query({
       query: (id) => `products/${id}`,
     }),
-    getAllRajaOngkir: builder.query({
-      query: () => "orders/city",
+    getCityRajaOngkir: builder.query({
+      query: () => {
+        return {
+          url: "orders/city",
+          headers: {
+            access_token: localStorage.getItem("access_token"),
+          },
+        };
+      },
+    }),
+    getCostRajaOngkir: builder.mutation({
+      query: (cost) => {
+        return {
+          url: "orders/cost",
+          method: "POST",
+          body: cost,
+          headers: {
+            access_token: localStorage.getItem("access_token"),
+            "Content-type": "application/json; charset=UTF-8",
+          },
+        };
+      },
     }),
   }),
 });
@@ -20,5 +39,6 @@ export const productsApi = createApi({
 export const {
   useGetProductsQuery,
   useGetProductByIdQuery,
-  useGetAllRajaOngkirQuery,
+  useGetCityRajaOngkirQuery,
+  useGetCostRajaOngkirMutation,
 } = productsApi;
