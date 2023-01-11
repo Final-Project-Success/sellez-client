@@ -1,10 +1,9 @@
 import { AiFillShopping } from "react-icons/ai";
 import { useDispatch } from "react-redux";
-import { setAddItemToCart, setOpenCart } from "../features/CartSlice";
+import { setAddItemToCart } from "../features/CartSlice";
 import { Link } from "react-router-dom";
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
-import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
+
 export default function CarouselItems({
   id,
   color,
@@ -15,10 +14,8 @@ export default function CarouselItems({
   price,
 }) {
   const dispatch = useDispatch();
-  // const [productCart, setProductCart] = useState("");
   const onAddToCart = () => {
     const item = { id, name, text, imgUrl, color, shadow, price };
-    // setProductCart(`Success add ${name} to cart!`);
     const rupiah = (number) => {
       return new Intl.NumberFormat("id-ID", {
         style: "currency",
@@ -26,8 +23,15 @@ export default function CarouselItems({
       }).format(number);
     };
     rupiah(price, "????");
-    console.log(price, "<<<<<<<<<<<<");
     dispatch(setAddItemToCart(item));
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      heightAuto: true,
+      title: `Added item to cart`,
+      showConfirmButton: false,
+      timer: 1000,
+    });
   };
 
   const rupiah = (number) => {
@@ -37,44 +41,8 @@ export default function CarouselItems({
     }).format(number);
   };
 
-  const onCartToggle = () => {
-    dispatch(
-      setOpenCart({
-        cartState: true,
-      })
-    );
-  };
-
-  // const successNotify = (msg) =>
-  //   toast.success(msg, {
-  //     position: "top-center",
-  //     autoClose: 5000,
-  //     hideProgressBar: false,
-  //     closeOnClick: true,
-  //     pauseOnHover: true,
-  //     draggable: true,
-  //     progress: undefined,
-  //     theme: "colored",
-  //   });
-
-  // useEffect(() => {
-  //   successNotify(productCart);
-  // }, [productCart]);
-
   return (
     <>
-      {/* <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      /> */}
       <div
         className={`relative bg-gradient-to-b ${color}  grid items-center justify-items-start rounded-xl py-5 px-5 transition-all duration-700 ease-in-out w-full min-h-full hover:scale-105`}
       >

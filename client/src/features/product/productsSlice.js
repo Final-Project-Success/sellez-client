@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-const { useGetProductsQuery } = require("../apiSlice");
 
 const initialState = {
   products: [],
+  cities: [],
 };
 
 export const productsSlice = createSlice({
@@ -11,6 +11,9 @@ export const productsSlice = createSlice({
   reducers: {
     setProducts: (state, action) => {
       state.products = action.payload;
+    },
+    setCities: (state, action) => {
+      state.cities = action.payload;
     },
   },
 });

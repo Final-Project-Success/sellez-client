@@ -1,14 +1,12 @@
 import logo from "./../assets/sellez-logoo.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import { useRegisterMutation } from "../features/apiUser";
-import { useEffect, useState } from "react";
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
+import { useState } from "react";
+import Swal from "sweetalert2";
 
 export default function RegisterPage() {
   const navigate = useNavigate();
   const [register] = useRegisterMutation();
-  // const [alertMessage, setAlertMessage] = useState("");
   const [input, setInput] = useState({
     username: "",
     email: "",
@@ -30,8 +28,9 @@ export default function RegisterPage() {
   const handleSubmit = (event) => {
     event.preventDefault();
     register(input).then((result) => {
+      console.log(result);
       if (result.data) {
-        // successNotify(result.data.msg);
+        navigate("/otp");
         setInput({
           username: "",
           email: "",
@@ -40,64 +39,31 @@ export default function RegisterPage() {
           role: "customer",
           phoneNumber: "",
         });
-        navigate("/login");
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `Success Register`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
       }
 
-      // if (result.error) {
-      //   setAlertMessage(result.error.data.msg);
-      // }
+      if (result.error) {
+        Swal.fire({
+          icon: "error",
+          text: `${result.error.data.msg}`,
+        });
+      }
     });
   };
 
-  // const successNotify = (msg) =>
-  //   toast.success(msg, {
-  //     position: "top-center",
-  //     autoClose: 5000,
-  //     hideProgressBar: false,
-  //     closeOnClick: true,
-  //     pauseOnHover: true,
-  //     draggable: true,
-  //     progress: undefined,
-  //     theme: "colored",
-  //   });
-
-  // const errorNotify = () =>
-  //   toast.error(alertMessage, {
-  //     position: "top-center",
-  //     autoClose: 5000,
-  //     hideProgressBar: false,
-  //     closeOnClick: true,
-  //     pauseOnHover: true,
-  //     draggable: true,
-  //     progress: undefined,
-  //     theme: "colored",
-  //   });
-
-  // useEffect(() => {
-  //   if (alertMessage !== "") {
-  //     errorNotify();
-  //   }
-  // }, [alertMessage]);
-
   return (
     <>
-      {/* <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      /> */}
       <section class="h-screen">
         <div class="px-6 h-full text-gray-800">
           <div class="flex xl:justify-center lg:justify-between justify-center items-center flex-wrap h-full g-6">
             <div class="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 mb-12 md:mb-0">
-              <img src={logo} style={{ width: 700 }} alt="logo" />
+              <img src={logo} style={{ width: 600 }} alt="logo" />
             </div>
             <div class="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
               <p class="text-lg mb-10 mr-4 font-bold">Create new account!</p>
@@ -170,6 +136,7 @@ export default function RegisterPage() {
                   >
                     Sign Up
                   </button>
+
                   <p class="text-sm font-semibold mt-2 pt-1 mb-0">
                     Already Have Account?
                     <Link

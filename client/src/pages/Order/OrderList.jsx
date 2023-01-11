@@ -3,8 +3,11 @@ import OrderCard from "./OrderListComponents/OrderCard";
 import Badge from "./OrderListComponents/Badge";
 import ScrollToBottom from "react-scroll-to-bottom";
 import { CgShoppingBag } from "react-icons/cg";
+import { useGetOrdersQuery } from "../../features/apiOrder";
 
 export default function OrderList() {
+  const { data, error, isLoading } = useGetOrdersQuery();
+
   return (
     <div className="detailspage min-h-screen flex justify-center items-center">
       {/* Importing Components */}
@@ -60,57 +63,19 @@ export default function OrderList() {
             <div className="w-[80%] mx-auto">
               <ScrollToBottom className="h-[300px] w-[700px]">
                 <Link to="/orderDetails">
-                  <OrderCard
-                    orderId="f0ba538b"
-                    badge={<Badge pending={true} text="Pending" />}
-                    date="Jan 02, 2023"
-                    price="$315.10"
-                  />
-                </Link>
-
-                <Link to="/orderDetails">
-                  <OrderCard
-                    orderId="f0ba538b"
-                    badge={<Badge pending={true} text="Processing" />}
-                    date="Jan 03, 2023"
-                    price="$330.10"
-                  />
-                </Link>
-
-                <Link to="/orderDetails">
-                  <OrderCard
-                    orderId="f0ba538b"
-                    badge={<Badge delivered={true} text="Delivered" />}
-                    date="Jan 04, 2023"
-                    price="$345.10"
-                  />
-                </Link>
-
-                <Link to="/orderDetails">
-                  <OrderCard
-                    orderId="f0ba538b"
-                    badge={<Badge delivered={true} text="Delivered" />}
-                    date="Jan 05, 2023"
-                    price="$360.10"
-                  />
-                </Link>
-
-                <Link to="/orderDetails">
-                  <OrderCard
-                    orderId="f0ba538b"
-                    badge={<Badge cancelled={true} text="Cancelled" />}
-                    date="Jan 06, 2023"
-                    price="$375.10"
-                  />
-                </Link>
-
-                <Link to="/orderDetails">
-                  <OrderCard
-                    orderId="f0ba538b"
-                    badge={<Badge cancelled={true} text="Cancelled" />}
-                    date="Jan 07, 2023"
-                    price="$390.10"
-                  />
+                  {data?.map((el) => {
+                    return (
+                      <OrderCard
+                        orderId={`f0ba${el.id}`}
+                        badge={<Badge pending={true} text={el.status} />}
+                        date={new Date(el.createdAt).toISOString().slice(0, 10)}
+                        price={el.totalPrice.toLocaleString("id-ID", {
+                          style: "currency",
+                          currency: "IDR",
+                        })}
+                      />
+                    );
+                  })}
                 </Link>
               </ScrollToBottom>
             </div>

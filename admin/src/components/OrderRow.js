@@ -26,7 +26,7 @@ export default function OrderRow({ order, i }) {
       return `text-yellow-400`
     }
     if(order.status === 'EXPIRED') {
-      return `text-rerd-400`
+      return `text-red-400`
     }
     
     

@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import axios from "axios";
 import {
   selectCartItems,
   selectCartState,
@@ -13,6 +12,7 @@ import {
 import CartCount from "./CartCount";
 import CartEmpty from "./CartEmpty";
 import CartItem from "./CartItem";
+import { useNavigate } from "react-router";
 
 export default function Cart() {
   const dispatch = useDispatch();
@@ -31,7 +31,7 @@ export default function Cart() {
       })
     );
   };
-
+  const navigate = useNavigate();
   const onClearCartItems = () => {
     dispatch(setClearCartItems());
   };
@@ -43,24 +43,8 @@ export default function Cart() {
   };
 
   let checkout = async () => {
-    try {
-      let baseURL = "http://localhost:4000/orders";
-      let ongkir = 10000;
-
-      let { data } = await axios({
-        url: baseURL,
-        method: "POST",
-        data: {
-          products: localStorage.cart,
-          shippingCost: ongkir,
-          totalPrice: totalAmount,
-        },
-        headers: { access_token: localStorage.access_token },
-      });
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
+    localStorage.setItem("totalPrice", totalAmount);
+    navigate("/order");
   };
 
   return (

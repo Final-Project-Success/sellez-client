@@ -76,7 +76,7 @@ export default function CartItem({
             </div>
           </div>
           <div className="grid items-center gap-4">
-            <div className="grid items-center leading-none">
+            <div className="grid items-center w-[150px]">
               <h1 className="font-medium text-lg text-slate-900 lg:text-sm">
                 {name}
               </h1>

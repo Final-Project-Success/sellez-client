@@ -1,11 +1,13 @@
 import { Outlet } from "react-router";
 import NewNavbar from "../components/NewNavbar";
-import OtpForm from "../components/OtpForm";
+import Cart from "../components/Cart/Cart.jsx";
+
 export default function BaseLayout() {
   return (
     <>
       <NewNavbar />
-      <OtpForm/>
+      <Cart />
+
       <Outlet />
     </>
   );
