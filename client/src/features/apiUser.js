@@ -10,7 +10,7 @@ export const usersApi = createApi({
         method: "POST",
         body: user,
         headers: {
-          "Content-type": "multipart/form-data; boundary=MyBoundary",
+          "Content-type": "application/json; charset=UTF-8",
         },
       }),
     }),
