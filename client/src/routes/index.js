@@ -56,10 +56,6 @@ const router = createBrowserRouter([
     },
   },
   {
-    path: 'otp',
-    element: <OtpForm />
-  },
-  {
     path: "/register",
     element: <RegisterPage />,
     loader: () => {

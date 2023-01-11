@@ -30,6 +30,7 @@ export default function RegisterPage() {
     register(input).then((result) => {
       console.log(result);
       if (result.data) {
+        localStorage.setItem('verified', result.data.verified)
         navigate("/otp");
         setInput({
           username: "",
