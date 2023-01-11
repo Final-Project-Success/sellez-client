@@ -4,6 +4,7 @@ import socialMediaAuth from "../../sevices/auth";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/sellez-logoo.jpg";
+import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import {
   useLoginMutation,
@@ -69,6 +70,14 @@ export default function LoginPage() {
         localStorage.setItem("role", result.data.role);
         localStorage.setItem("username", result.data.username);
         navigate("/");
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          heightAuto: true,
+          title: `Welcome ${input.email}`,
+          showConfirmButton: false,
+          timer: 1000
+        })
         setInput({
           email: "",
           password: "",

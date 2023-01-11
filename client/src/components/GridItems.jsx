@@ -2,6 +2,7 @@ import { AiFillShopping } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { setAddItemToCart, setOpenCart } from "../features/CartSlice";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 export default function GridItems({
   id,
   color,
@@ -15,7 +16,14 @@ export default function GridItems({
   const dispatch = useDispatch();
   const onAddToCart = () => {
     const item = { id, name, Category, imgUrl, color, shadow, price };
-
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      heightAuto: true,
+      title: `Added item to cart`,
+      showConfirmButton: false,
+      timer: 1000
+    })
     dispatch(setAddItemToCart(item));
   };
   const onCartToggle = () => {

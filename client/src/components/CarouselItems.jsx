@@ -2,6 +2,8 @@ import { AiFillShopping } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { setAddItemToCart } from "../features/CartSlice";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+
 export default function CarouselItems({
   id,
   color,
@@ -22,6 +24,14 @@ export default function CarouselItems({
     };
     rupiah(price, "????");
     dispatch(setAddItemToCart(item));
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      heightAuto: true,
+      title: `Added item to cart`,
+      showConfirmButton: false,
+      timer: 1000
+    })
   };
 
   const rupiah = (number) => {
