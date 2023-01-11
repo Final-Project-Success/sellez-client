@@ -1,4 +1,4 @@
-import Cart from "../../components/Cart/Cart.jsx";
+// import Cart from "../../components/Cart/Cart.jsx";
 import FlexContent from "../../components/FlexContent.jsx";
 import Hero from "../../components/Hero.jsx";
 import PopularSales from "../../components/PopularSales.jsx";
@@ -11,7 +11,7 @@ export default function HomePage(params) {
 
   return (
     <>
-      <Cart />
+      {/* <Cart /> */}
       <main className="flex flex-col gap-16 relative">
         <ChatPage />
         <Hero />

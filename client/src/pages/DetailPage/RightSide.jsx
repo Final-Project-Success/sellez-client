@@ -1,11 +1,30 @@
-export default function RightSide() {
+import { setAddItemToCart } from "../../features/CartSlice";
+import { useDispatch } from "react-redux";
+export default function RightSide({ data }) {
+  // const { id } = useParams();
+  // const { data, isLoading, error } = useGetProductByIdQuery(id);
+  const dispatch = useDispatch();
+  const onAddToCart = () => {
+    const item = {
+      id: data.id,
+      name: data.name,
+      Category: data.Category,
+      imgUrl: data.ImgUrl,
+      color: data.color,
+      shadow: data.shadow,
+      price: data.price,
+    };
+
+    dispatch(setAddItemToCart(item));
+  };
+  console.log(data, "<");
   return (
     <div className="w-[20%]">
       <div>
         {/* <!-- Reviews --> */}
         <div className="flex justify-between items-center">
           <span className="text-[22px] text-mainTextColor font-medium">
-            Ratings:
+            Rating:
           </span>
           <div>
             <i className="fa-solid fa-star text-orange-400 text-xl"></i>
@@ -22,42 +41,19 @@ export default function RightSide() {
         {/* <!-- Sizes --> */}
         <div className="flex justify-between my-8">
           {/* <!-- Text --> */}
-          <div>
-            <span className="text-[22px] text-mainTextColor font-medium">
-              Size:
-            </span>
-          </div>
 
           {/* <!-- Size List --> */}
-          <div>
-            <ul className="grid grid-cols-3 gap-x-4 gap-y-2">
-              <li className="bg-gray-100 text-mainTextColor font-medium cursor-pointer w-max px-3">
-                37
-              </li>
-              <li className="bg-gray-100 text-mainTextColor font-medium cursor-pointer w-max px-3">
-                38
-              </li>
-              <li className="bg-gray-100 text-mainTextColor font-medium cursor-pointer w-max px-3">
-                39
-              </li>
-              <li className="bg-gray-100 text-mainTextColor font-medium cursor-pointer w-max px-3">
-                40
-              </li>
-              <li className="bg-gray-100 text-mainTextColor font-medium cursor-pointer w-max px-3">
-                41
-              </li>
-              <li className="bg-gray-100 text-mainTextColor font-medium cursor-pointer w-max px-3">
-                42
-              </li>
-            </ul>
-          </div>
+          <div></div>
         </div>
 
         {/* <!-- share, chat, shortlist --> */}
 
         {/* <!-- Add to cart Button --> */}
         <div className="w-full mt-3">
-          <button className="w-full bg-buttonColor text-black font-medium uppercase rounded-md py-4">
+          <button
+            className="w-full bg-buttonColor text-black font-medium uppercase rounded-md py-4"
+            onClick={() => onAddToCart()}
+          >
             Add to Cart
           </button>
         </div>
