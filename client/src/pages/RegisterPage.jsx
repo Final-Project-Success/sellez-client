@@ -1,7 +1,7 @@
 import logo from "./../assets/sellez-logoo.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import { useRegisterMutation } from "../features/apiUser";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import Swal from 'sweetalert2'
 
 export default function RegisterPage() {
