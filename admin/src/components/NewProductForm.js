@@ -15,7 +15,7 @@ export default function NewProductForm() {
     stock: "",
     description: "",
     color: "",
-    CategoryId: 0
+    CategoryId: null
   });
 
   const [image, setImage] = useState(null);
@@ -139,7 +139,7 @@ export default function NewProductForm() {
             </label>
             <textarea
               id="message"
-              rows="3"
+              
               onChange={handleChange}
               value={input.color}
               name="color"
@@ -153,7 +153,7 @@ export default function NewProductForm() {
             </label>
             <textarea
               id="message"
-              rows="3"
+            
               onChange={handleChange}
               value={input.CategoryId}
               name="CategoryId"
