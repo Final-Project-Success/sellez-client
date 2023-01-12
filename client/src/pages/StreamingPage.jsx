@@ -125,7 +125,7 @@ export default function StreamingPage() {
             <ScrollToBottom className="h-[500px]">
               {messageList?.map((el) => {
                 return (
-                  <div className="flex items-center" key={el.id}>
+                  <div className="flex items-center ml-2" key={el.id}>
                     <h3 className="text-xl font-medium text-[#white] -mt-1">
                       {el.user}:
                     </h3>

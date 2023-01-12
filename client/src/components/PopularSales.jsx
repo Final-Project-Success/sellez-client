@@ -22,7 +22,7 @@ export default function PopularSales() {
   };
   return (
     <>
-      <div className="nike-container">
+      <div className="nike-container mt-10">
         <div className="grid items-center">
           <h1
             className="text-5xl lg:text-4xl md:text-3xl font-bold text-slate-900 filter

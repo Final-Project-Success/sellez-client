@@ -11,7 +11,7 @@ export default function Hero() {
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
           }}
-          className="h-[100vh] lg:h-[85vh] md:h-[75vh] sm:h-[65vh] w-auto absolute top-0 left-0 right-0 opacity-100 z-10"
+          className="h-[90vh] lg:h-[85vh] md:h-[75vh] sm:h-[65vh] w-auto absolute top-0 left-0 right-0 opacity-100 z-10 mb-10"
         ></div>
         <div className="relative opacity-100 z-20 grid items-center justify-items-center nike-container">
           <div className="grid items-center justify-items-center mt-28 md:mt-24">

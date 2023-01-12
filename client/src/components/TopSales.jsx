@@ -3,6 +3,7 @@ import GridItems from "./GridItems";
 import { useGetProductsQuery } from "../features/apiSlice";
 export default function TopSales() {
   const { data: products, loading, error } = useGetProductsQuery();
+  console.log(products, "ini productss");
   return (
     <>
       <div className="nike-container">

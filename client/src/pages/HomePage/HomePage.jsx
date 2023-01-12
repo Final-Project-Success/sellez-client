@@ -12,11 +12,12 @@ export default function HomePage(params) {
   return (
     <>
       {/* <Cart /> */}
-      <main className="flex flex-col gap-16 relative">
+      <main className="flex flex-col gap-20 relative">
         <ChatPage />
         <Hero />
         <PopularSales />
         <FlexContent />
+
         <TopSales />
 
         <FlexContent ifExists />
