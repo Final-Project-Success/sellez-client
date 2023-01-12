@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { BsDashCircleDotted } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
 import { usePostOrdersMutation } from "../../../features/apiOrder";
 import { useGetCityRajaOngkirQuery } from "../../../features/apiSlice";
@@ -13,7 +14,6 @@ export default function ShippingForm() {
     destination: 0,
     courier: "",
   });
-  const navigate = useNavigate();
 
   const [ongkir, setOngkir] = useState(0);
 
@@ -165,3 +165,7 @@ export default function ShippingForm() {
     </>
   );
 }
+
+//asdasdas
+// HiArrowSmDownasdas
+// BsDashCircleDotted
