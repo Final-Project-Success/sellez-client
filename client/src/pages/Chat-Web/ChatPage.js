@@ -3,7 +3,7 @@ import io from "socket.io-client";
 import { useEffect, useState } from "react";
 import Chat from "../../components/chat/chat";
 import chatImage from "../../assets/chat.png";
-const socket = io.connect("http://localhost:3001");
+const socket = io.connect("http://44.203.56.35:3001");
 const Profile =
   "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png";
 export default function ChatPage() {

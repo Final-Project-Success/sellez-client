@@ -9,7 +9,7 @@ import AgoraUIKit from "agora-react-uikit";
 import ScrollToBottom from "react-scroll-to-bottom";
 import { useChatsQuery } from "../features/apiChat";
 
-const socket = io.connect("http://localhost:3001");
+const socket = io.connect("http://44.203.56.35:3001");
 export default function StreamingPage() {
   const { data, error, isLoading } = useChatsQuery();
   const [show, setShow] = useState(false);

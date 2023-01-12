@@ -43,10 +43,10 @@ export default function Chat({ socket, username, toggle, room }) {
   }, []);
 
   function getUsername() {
-    if (localStorage.role === "customer") {
-      return "Admin";
-    } else {
+    if (localStorage.role === "admin") {
       return username;
+    } else {
+      return "";
     }
   }
 
@@ -71,7 +71,9 @@ export default function Chat({ socket, username, toggle, room }) {
               <h1 className="text-3xl capitalize text-white"></h1>
               <span className="absolute w-3 h-3 block right-[1px] bottom-1 rounded-full bg-green-500 shadow-lg"></span>
             </div>
-            <h3 className="capitalize text-center">{getUsername()}</h3>
+            <h3 className="capitalize text-center">
+              {localStorage.role !== "customer" ? username : null}
+            </h3>
           </div>
 
           <div className="shadow-lg p-2 rounded-full cursor-pointer">
