@@ -1,6 +1,6 @@
 import axios from "axios";
 import setLoading from "./loading";
-let baseUrl = "http://localhost:4000";
+let baseUrl = "http://44.203.56.35:4000";
 
 export function fetchOrders() {
   return async (dispatch) => {
@@ -32,10 +32,9 @@ export function DetailOrder(id) {
         },
       });
       dispatch({ type: "orders/fetchDetail", payload: data });
-
     } catch (error) {
       console.log(error);
-    }finally {
+    } finally {
       dispatch(setLoading(false));
     }
   };
