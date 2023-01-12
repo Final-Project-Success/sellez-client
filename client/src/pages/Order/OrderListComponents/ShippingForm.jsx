@@ -90,6 +90,9 @@ export default function ShippingForm() {
                 onChange={handleChange}
                 className="w-full bg-transparent outline-none text-gray-400"
               >
+                <option selected default disabled>
+                  Choose One
+                </option>
                 {data?.rajaongkir.results.map((el) => {
                   return (
                     <option value={el.city_id} key={el.city_id}>
@@ -108,6 +111,9 @@ export default function ShippingForm() {
                 onChange={handleChange}
                 className="w-full bg-transparent outline-none text-gray-400"
               >
+                <option selected default disabled>
+                  Choose One
+                </option>
                 <option value="tiki">TIKI</option>
                 <option value="jne">JNE</option>
                 <option value="pos">POS</option>
@@ -124,11 +130,6 @@ export default function ShippingForm() {
             />
           </div>
           <div className="flex justify-between items-center gap-10 mb-4">
-            <Link to={"/"}>
-              <button className="w-full bg-[#F8F9FD] text-progressBg font-semibold py-2 rounded-md">
-                Back to Cart
-              </button>
-            </Link>
             <button
               type="submit"
               className="w-full bg-progressBg text-white font-semibold py-2 rounded-md"
